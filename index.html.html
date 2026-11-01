@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Total Collision</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,14 +60,15 @@ input[type=range]{padding:0;border:0;background:transparent;accent-color:var(--o
 .menu .msg{position:absolute;left:clamp(24px,9vw,170px);bottom:34px;margin:0}
 .ver{position:absolute;right:16px;bottom:10px;font-size:.74rem;color:#9a6a5a;margin:0}
 .menu::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 30% 50%,transparent 40%,rgba(5,2,3,.65) 100%)}
-@media(max-width:700px){.menu-in{padding-left:22px}.ver{display:none}}
+body.w700 .menu-in{padding-left:22px}body.w700 .ver{display:none}
 @media(prefers-reduced-motion:reduce){.menu *{animation-duration:.01s!important;animation-delay:0s!important}}
 
 .fsb{position:fixed;top:clamp(12px,2.4vh,24px);right:clamp(12px,2.4vw,28px);width:44px;height:44px;display:grid;place-items:center;background:rgba(20,4,8,.45);border:1px solid rgba(255,130,90,.5);color:#fff;cursor:pointer;border-radius:6px;backdrop-filter:blur(4px);transition:.25s;z-index:20}
 .fsb:hover{color:#ff7a3d;border-color:#ff7a3d;box-shadow:0 0 18px rgba(255,122,61,.5)}.fsb svg{width:20px;height:20px}
 /* лобби «Командный зал» */
 .lobby{max-width:1500px;margin:0 auto;min-height:100%;display:grid;grid-template-columns:minmax(240px,300px) minmax(0,1fr) minmax(290px,340px);grid-template-rows:auto minmax(0,1fr);gap:14px}
-@media(max-width:1000px){.lobby{grid-template-columns:1fr}}
+body.w1000 .lobby{grid-template-columns:minmax(150px,210px) minmax(0,1fr) minmax(170px,240px)}body.w1000 .ag{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+body.w560 .lobby{grid-template-columns:1fr}
 .hd{grid-column:1/-1;padding-right:56px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}.hd .ttl{font:700 1.5rem var(--ph);letter-spacing:.2em;text-transform:uppercase}
 .code{font:700 1.25rem var(--ph);letter-spacing:.3em;color:var(--o);background:var(--panel);border:1px solid var(--line);padding:.2em .7em}
 .sp{flex:1}
@@ -126,7 +127,7 @@ details{border:1px solid var(--line);background:var(--panel2)}details>summary{cu
 #g-end .pan,#g-menu .pan{text-align:center;align-items:stretch}#g-end h2{font-size:2.2rem;letter-spacing:.2em}.end h2.win{color:var(--ok)}.end h2.lose{color:var(--foe)}
 .hint{position:absolute;right:10px;top:62px;font-size:.75rem;color:var(--dim);background:var(--panel);border:1px solid var(--line);padding:6px 10px;max-width:270px;line-height:1.35;pointer-events:none}
 .terr{position:absolute;left:50%;top:44px;transform:translateX(-50%);background:var(--panel);border:1px solid var(--line);padding:4px 12px;font-size:.85rem}
-@media(max-width:760px){.bot{left:10px;bottom:196px}.hint{display:none}}
+body.w760 .bot{left:10px;bottom:196px}body.w760 .hint{display:none}
 
 .wiki{width:min(1100px,96%);max-height:92vh;display:flex;flex-direction:column;gap:12px;text-align:left;align-items:stretch}
 .wiki .tabs{display:flex;gap:6px}.wiki .tabs button{font:700 .95rem var(--ph);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);background:var(--panel);border:1px solid var(--line);padding:9px 18px;cursor:pointer}
@@ -146,6 +147,53 @@ details{border:1px solid var(--line);background:var(--panel2)}details>summary{cu
 .rooms{width:min(640px,96%);max-height:88vh;display:flex;flex-direction:column;gap:10px;text-align:left;align-items:stretch}
 .rlist{display:flex;flex-direction:column;gap:6px;overflow:auto;min-height:90px}
 .room-row{display:grid;grid-template-columns:1.4fr .8fr .7fr .9fr auto;gap:10px;align-items:center;background:var(--panel2);border:1px solid var(--line);padding:9px 12px}.room-row span{white-space:nowrap}.room-row:hover{border-color:var(--o)}
+
+/* телефон */
+html,body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+.tonly{display:none}
+body.touch{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;font-size:15px}
+body.touch input{-webkit-user-select:text;user-select:text}
+body.touch .tonly{display:inline-block}
+body.touch .btn{min-height:40px}
+body.touch .btn.s{min-height:38px;padding:.5em .9em;font-size:.8rem}
+body.touch .screen{-webkit-overflow-scrolling:touch;touch-action:pan-y}
+body.touch #s-game{touch-action:none}
+body.touch .hint,body.touch .terr{display:none}
+body.touch .top{padding:4px;gap:6px}body.touch .top>div{padding:3px 10px}body.touch .pt{min-width:140px}body.touch #h-time{min-width:80px!important}
+body.touch .mm{left:6px;bottom:6px}
+body.touch .bot{left:132px;right:6px;bottom:6px;gap:4px;max-height:62vh}
+body.touch .cmd{gap:4px}
+body.touch .cards{-webkit-overflow-scrolling:touch;touch-action:pan-x;max-width:100%}
+body.touch .card-sq{min-width:76px;padding:4px;flex:none;width:84px}body.touch .card-sq .ic{width:34px;height:34px}
+body.touch .grp .gh button{height:34px;min-width:34px}
+body.touch .slot2{padding:8px 10px}
+body.touch .lobby{gap:8px}body.touch .pan{padding:10px;gap:8px}
+body.touch .hd .ttl{font-size:1.1rem}body.touch .hd{gap:8px}
+body.touch .cnt button{width:36px;height:36px}
+body.touch .mnav button{padding:.55em 0}
+body.rot{position:fixed;transform-origin:0 0;transform:rotate(90deg);overflow:hidden}
+body.h480.touch .menu-in{padding-top:18px;gap:10px}body.h480.touch .l-coll{font-size:clamp(2rem,9vh,3.6rem)}body.h480.touch .mnav{font-size:.95rem}body.h480.touch .mnav button{padding:.4em 0}body.h480.touch .end .pan{max-height:94%;overflow:auto}
+
+.acct{width:min(420px,94%);text-align:left;align-items:stretch}.acf{display:flex;flex-direction:column;gap:10px}
+.tabs2{display:flex;gap:6px}.tabs2 button{flex:1;font:700 .9rem var(--ph);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);background:var(--panel);border:1px solid var(--line);padding:9px;cursor:pointer}.tabs2 button.on{color:#fff;border-color:var(--gold);background:rgba(90,50,16,.5)}
+.nick2{font:700 1.5rem var(--ph);letter-spacing:.06em;word-break:break-all}
+.acct-lab{position:absolute;right:16px;bottom:30px;margin:0;font-size:.82rem;color:var(--gold);z-index:2}
+#s-fr{place-items:stretch;background:rgba(5,2,3,.96)}
+#s-fr .frp{width:100%;height:100%;border:0;border-top:2px solid var(--o);padding:14px 26px 18px 150px;gap:12px;text-align:left;align-items:stretch}
+.frcols{flex:1;min-height:0;display:grid;grid-template-columns:minmax(260px,360px) minmax(0,1fr);gap:14px}
+.frl,.frc{display:flex;flex-direction:column;gap:10px;min-height:0}
+.fr-list{overflow:auto;display:flex;flex-direction:column;gap:6px;min-height:0;flex:1}.fr-res{display:flex;flex-direction:column;gap:6px}
+.fr-h{font:700 .8rem var(--ph);letter-spacing:.16em;text-transform:uppercase;color:var(--o);margin-top:4px}
+.fr-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--panel2);border:1px solid var(--line);padding:7px 10px}.fr-row .fr-n{flex:1 1 90px;min-width:0;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.fr-f{cursor:pointer}.fr-f:hover,.fr-f.on{border-color:var(--o)}
+.dot{width:9px;height:9px;border-radius:50%;background:#5a4a48;display:inline-block;flex:none}.dot.on{background:var(--ok);box-shadow:0 0 6px var(--ok)}
+.badge{background:var(--r);color:#fff;border-radius:10px;padding:0 7px;font-size:.8rem}
+.frc>div{display:flex;flex-direction:column;gap:10px;min-height:0;flex:1}#ch-main[hidden]{display:none}
+.chh{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px}
+#ch-msgs{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:6px;padding:4px}
+.msg2{max-width:78%;align-self:flex-start;background:var(--panel2);border:1px solid var(--line);padding:6px 10px;word-break:break-word}.msg2.me{align-self:flex-end;background:rgba(90,50,16,.55);border-color:rgba(232,184,90,.4)}
+.tm2{font-size:.68rem;color:var(--dim);text-align:right}
+body.w700 .frcols{grid-template-columns:1fr}
 </style>
 </head>
 <body>
@@ -164,7 +212,7 @@ details{border:1px solid var(--line);background:var(--panel2)}details>summary{cu
     </nav>
     <p class="msg" id="m-msg"></p>
   </div>
-  <p class="ver" id="m-ver"></p>
+  <p class="acct-lab" id="m-acct" hidden></p><p class="ver" id="m-ver"></p>
 </section>
 <div class="end" id="s-play" hidden><div class="pan" style="width:min(430px,94%);text-align:left"><h2>Обычный бой</h2>
   <label class="fld">Ваше имя<input id="m-name" maxlength="16" placeholder="Полководец" autocomplete="nickname"></label>
@@ -193,8 +241,8 @@ details{border:1px solid var(--line);background:var(--panel2)}details>summary{cu
     <div class="pt" id="h-pt"><div class="l"><span id="h-ptl">Точка</span><span id="h-ptp"></span></div><div class="bar"><i id="h-ptb"></i></div></div></div>
   <div class="mm"><canvas id="mm"></canvas></div>
   <div class="bot"><div class="cmd" id="g-deploy"><button class="btn primary" id="b-ready">Готов</button><button class="btn" id="b-auto">Расставить заново</button><button class="btn" id="b-all">Выбрать все</button></div>
-    <div class="cmd" id="g-battle"><button class="btn s" id="b-stop" title="H">Стоп</button><button class="btn s" id="b-fire" title="F">Огонь</button><button class="btn s" id="b-pause" title="Пробел">Пауза</button><button class="btn s" id="b-speed">×1</button></div>
-    <div class="cmd"><button class="btn s" id="b-group" title="G">Объединить</button><button class="btn s" id="b-menu" title="Esc">Меню</button><button class="btn s" id="b-full" title="Полный экран">⛶ Полный экран</button></div>
+    <div class="cmd" id="g-battle"><button class="btn s" id="b-stop" title="H">Стоп</button><button class="btn s" id="b-hold" title="V">Держать строй</button><button class="btn s" id="b-fire" title="F">Огонь</button><button class="btn s" id="b-pause" title="Пробел">Пауза</button><button class="btn s" id="b-speed">×1</button></div>
+    <div class="cmd"><button class="btn s" id="b-group" title="G">Объединить</button><button class="btn s tonly" id="b-torder">Приказ</button><button class="btn s tonly" id="b-tbox">Рамка</button><button class="btn s" id="b-menu" title="Esc">Меню</button><button class="btn s" id="b-full" title="Полный экран">⛶ Полный экран</button></div>
     <div class="cards" id="g-cards"></div></div>
   <div class="hint">ЛКМ — выбор, рамка (Shift/Ctrl — добавить). ПКМ — идти или атаковать; ПКМ с протяжкой — строй. Жёлтые точки на краях строя — растянуть. WASD — камера, Q/E — поворот, колесо — масштаб. H стоп, F огонь, G группа, Ctrl+цифра — быстрая группа.</div>
   <div class="terr" id="g-terr" hidden></div>
@@ -202,13 +250,42 @@ details{border:1px solid var(--line);background:var(--panel2)}details>summary{cu
   <div class="end" id="g-menu" hidden><div class="pan" style="width:min(340px,92%);align-items:stretch"><h2 style="text-align:center">Меню</h2><button class="btn primary" id="mn-close">Продолжить</button><button class="btn" id="mn-set">Настройки игры</button><button class="btn" id="mn-full">⛶ Полный экран</button><button class="btn" id="mn-sur">Сдаться</button><button class="btn" id="mn-exit">Выйти в меню</button></div></div>
   <div class="end" id="g-end" hidden><div class="pan"><h2 id="e-title"></h2><p id="e-why"></p><p class="dim" id="e-sc"></p><button class="btn primary" id="e-back">В меню</button></div></div>
 </section>
+<div class="end" id="s-acct" hidden style="z-index:70"><div class="pan acct">
+  <div class="row"><h2>Профиль</h2><span class="sp"></span><button class="btn s backfix" id="ac-close">Закрыть</button></div>
+  <div id="ac-guest">
+    <div id="ac-form" class="acf">
+      <div class="tabs2" id="ac-tabs"><button data-m="login" class="on">Вход</button><button data-m="reg">Регистрация</button></div>
+      <label class="fld">Ник<input id="ac-n" maxlength="16" autocomplete="username"></label>
+      <label class="fld">Пароль<input id="ac-p" type="password" maxlength="64" autocomplete="current-password"></label>
+      <label class="fld" id="ac-p2w" hidden>Повторите пароль<input id="ac-p2" type="password" maxlength="64" autocomplete="new-password"></label>
+      <button class="btn primary" id="ac-go">Войти</button>
+      <p class="dim sm" id="ac-note"></p>
+    </div>
+    <p class="msg" id="ac-msg"></p>
+  </div>
+  <div id="ac-me" class="acf" hidden>
+    <div class="eyebrow">Ваш ник</div><div class="nick2" id="ac-nick"></div>
+    <div class="eyebrow">Ваш ID</div><div class="row"><b class="code" id="ac-id"></b><button class="btn s" id="ac-copy">Копировать</button></div>
+    <p class="dim sm">Друзья найдут вас по нику или по этому ID.</p>
+    <p class="dim sm" id="ac-st"></p>
+    <button class="btn" id="ac-out">Выйти из аккаунта</button>
+  </div>
+</div></div>
+<div class="end" id="s-fr" hidden style="z-index:70"><div class="pan frp">
+  <div class="row"><h2>Друзья</h2><span class="sp"></span><button class="btn s backfix" id="fr-close">Закрыть</button></div>
+  <div class="frcols">
+    <div class="frl"><div class="row" style="flex-wrap:nowrap"><input id="fr-q" placeholder="Ник или ID" maxlength="24" style="flex:1"><button class="btn s" id="fr-go">Найти</button></div><div id="fr-res" class="fr-res"></div><div id="fr-list" class="fr-list scr"></div></div>
+    <div class="frc"><div id="ch-empty" class="dim">Выберите друга, чтобы написать ему.</div>
+      <div id="ch-main" hidden><div class="chh"><div><b id="ch-name"></b> <span class="dim sm" id="ch-id"></span><div class="dim sm" id="ch-st"></div></div><span class="sp"></span><button class="btn s" id="ch-del">Удалить из друзей</button></div>
+        <div id="ch-msgs" class="scr"></div><div class="row" style="flex-wrap:nowrap"><input id="ch-in" maxlength="500" placeholder="Сообщение" style="flex:1"><button class="btn primary s" id="ch-send">Отправить</button></div></div></div>
+  </div></div></div>
 <div class="end" id="s-wiki" hidden style="z-index:45"><div class="pan wiki"><div class="row"><div class="tabs"><button id="wk-units" class="on">Отряды</button><button id="wk-maps">Карты</button><button id="wk-terr">Рельеф</button></div><span class="sp"></span><button class="btn s backfix" id="wiki-close">Закрыть</button></div><div class="wb" id="wk-body"></div></div></div>
 <div class="end" id="s-rooms" hidden style="z-index:70"><div class="pan rooms"><div class="row"><h2>Список комнат</h2><span class="sp"></span><button class="btn s" id="rooms-refresh">Обновить</button><button class="btn s backfix" id="rooms-close">Закрыть</button></div><div class="rlist" id="rooms-list"></div><p class="dim sm" id="rooms-msg"></p></div></div>
 <div class="end" id="s-set" hidden style="z-index:70"><div class="pan" style="width:min(460px,94%);text-align:left;align-items:stretch"><h2>Настройки игры</h2><p class="dim sm">Личные настройки: язык, звук и камера. Они сохраняются в браузере и не влияют на других игроков.</p><div id="set-body" style="display:flex;flex-direction:column;gap:12px"></div><button class="btn primary backfix" id="set-close">Готово</button></div></div>
 <script>
 window.__SERVER__="wss://total-collision.onrender.com";
-window.__BALANCE__={"version":"0.5.2","global":{"unitSpeed":3,"soldierRadius":0.45,"turnRate":5,"turnRateCav":3,"regenDelay":30,"regenRate":0.02,"regenCap":0.7,"swapTime":1,"axeStep":20,"charge":{"accel":30,"decel":150,"minSpeed":150,"stopSector":45},"wrapAngle":270,"maxAttackersPerTarget":3,"fileSpacing":1.2,"rankSpacing":1.4,"sight":100,"grassSight":15,"pointCtrlTime":5,"pointCaptureTime":100,"pointRadiusK":0.03,"pointRadiusMin":18,"deployTime":40,"battleTime":420,"zonePct":30,"squadScale":2,"budgetPerSquad":950,"limits":{"1v1":4,"2v2":3,"3v3":2},"squadsPerPlayer":{"1v1":12,"2v2":6,"3v3":4},"terrain":{"walls":true,"swamps":true,"rocks":true,"rivers":true,"bridges":true,"grass":true,"density":1,"flatMin":0.4},"mapSizes":[500,750,1000,1500,2000],"morale":true,"fog":true},"units":{"sword":{"name":"Мечники","cat":"canon","role":"melee","hp":200,"armor":35,"shield":25,"arc":180,"speed":100,"size":40,"ranks":4,"cost":800,"weapons":[{"id":"sword","name":"меч","dmg":60,"cd":1,"min":0,"max":1.3,"kind":"melee","fx":{}}],"abilities":[],"desc":"Универсальная пехота. Надёжна в любом бою.","morale":1.2},"axe":{"name":"Топорники","cat":"canon","role":"melee","hp":180,"armor":10,"shield":0,"arc":0,"speed":110,"size":40,"ranks":4,"cost":800,"weapons":[{"id":"axe","name":"топор","dmg":70,"cd":0.9,"min":0,"max":1.7,"kind":"melee","fx":{"axe":true}}],"abilities":[],"desc":"Быстрые, но почти без брони. Рубят щиты и латы.","morale":1},"spear":{"name":"Копейщики","cat":"canon","role":"melee","hp":240,"armor":60,"shield":40,"arc":120,"speed":85,"size":40,"ranks":4,"cost":850,"weapons":[{"id":"spear","name":"копьё","dmg":45,"cd":1.2,"min":0,"max":2,"kind":"melee","fx":{}}],"abilities":["antiCav"],"desc":"Гасят чардж конницы и держат строй.","morale":1.4},"pike":{"name":"Пикинеры","cat":"canon","role":"melee","hp":200,"armor":20,"shield":0,"arc":0,"speed":90,"size":40,"ranks":5,"cost":850,"weapons":[{"id":"pike","name":"пика","dmg":70,"cd":1.5,"min":3,"max":5,"kind":"melee","fx":{}},{"id":"psword","name":"меч","dmg":40,"cd":1,"min":0,"max":1.8,"kind":"melee","fx":{}}],"abilities":["antiCav"],"desc":"Длинные пики в первых рядах, вблизи слабы.","morale":1},"archer":{"name":"Лучники","cat":"canon","role":"ranged","hp":140,"armor":5,"shield":0,"arc":0,"speed":95,"size":30,"ranks":2,"cost":800,"weapons":[{"id":"bow","name":"лук","dmg":20,"cd":1.2,"min":5,"max":50,"kind":"ranged","ammo":30,"fx":{}},{"id":"dagger","name":"кинжал","dmg":25,"cd":1,"min":0,"max":1.5,"kind":"melee","fx":{}}],"abilities":[],"desc":"Дальний огонь. Слабы в рукопашной.","morale":0.6},"peltast":{"name":"Пельтасты","cat":"canon","role":"ranged","hp":180,"armor":20,"shield":10,"arc":90,"speed":105,"size":30,"ranks":3,"cost":800,"weapons":[{"id":"pilum","name":"пилум","dmg":75,"cd":1.2,"min":8,"max":10,"kind":"ranged","ammo":6,"fx":{"pilum":true}},{"id":"psw2","name":"кинжал","dmg":45,"cd":1,"min":0,"max":1.8,"kind":"melee","fx":{}}],"abilities":[],"desc":"Метают пилумы: ломают щиты и игнорируют броню.","morale":0.8},"cav":{"name":"Конница","cat":"canon","role":"cav","hp":250,"armor":35,"shield":0,"arc":0,"speed":100,"maxSpeed":400,"size":20,"ranks":2,"cost":1300,"weapons":[{"id":"lance","name":"копьё всадника","dmg":50,"cd":1.1,"min":0,"max":2.2,"kind":"melee","fx":{}}],"abilities":["charge"],"wide":true,"desc":"Разгоняется сама. Ломает строй, но боится копий.","morale":1.3},"shieldwall":{"name":"Щитоносцы","cat":"test","role":"melee","hp":260,"armor":70,"shield":50,"arc":150,"speed":70,"size":40,"ranks":4,"cost":1000,"weapons":[{"id":"spear","name":"копьё","dmg":35,"cd":1.2,"min":0,"max":2.5,"kind":"melee","fx":{}}],"abilities":["shieldWall"],"desc":"Медленные, но почти несокрушимые в строю.","morale":1.5},"xbow":{"name":"Арбалетчики","cat":"test","role":"ranged","hp":120,"armor":10,"shield":0,"arc":0,"speed":90,"size":30,"ranks":2,"cost":700,"weapons":[{"id":"xb","name":"арбалет","dmg":70,"cd":3.5,"min":30,"max":70,"kind":"ranged","ammo":20,"fx":{"armorPierce":0.5}},{"id":"xdag","name":"кинжал","dmg":20,"cd":0.8,"min":0,"max":1.5,"kind":"melee","fx":{}}],"abilities":[],"desc":"Короче дальность, но болты пробивают броню.","morale":0.6},"berserk":{"name":"Берсерки","cat":"test","role":"melee","hp":500,"armor":0,"shield":0,"arc":0,"speed":125,"size":15,"ranks":4,"cost":900,"weapons":[{"id":"axes","name":"два боевых топора","dmg":50,"cd":0.7,"min":0,"max":1.2,"kind":"melee","fx":{}}],"abilities":["berserk","fear"],"desc":"Без брони, быстры и яростны, не бегут с поля боя. Пугают врагов рядом.","morale":9999},"priest":{"name":"Жрецы","cat":"test","role":"melee","hp":160,"armor":10,"shield":0,"arc":0,"speed":95,"size":24,"ranks":3,"cost":800,"weapons":[{"id":"staff","name":"посох","dmg":20,"cd":1.2,"min":0,"max":1.8,"kind":"melee","fx":{}}],"abilities":["inspire"],"desc":"Слабо бьют, но поднимают мораль союзников рядом.","morale":3},"hxbow":{"name":"Конные лучники","cat":"test","role":"cav","hp":140,"armor":10,"shield":0,"arc":0,"speed":100,"maxSpeed":250,"size":20,"ranks":2,"cost":1000,"weapons":[{"id":"hbow","name":"лук","dmg":12,"cd":1.2,"min":5,"max":60,"kind":"ranged","ammo":30,"fx":{}},{"id":"hknife","name":"кинжал","dmg":20,"cd":0.8,"min":0,"max":1.8,"kind":"melee","fx":{}}],"abilities":["mountedFire","noCharge"],"wide":true,"desc":"Стреляют на скаку. Изматывают врага.","morale":0.9}}};
-window.__BUILD__={dev:false,built:"2026-11-01T02:31:34.033Z"};
+window.__BALANCE__={"version":"0.6.0","global":{"unitSpeed":3,"soldierRadius":0.45,"turnRate":5,"turnRateCav":3,"regenDelay":30,"regenRate":0.02,"regenCap":0.7,"swapTime":1,"axeStep":20,"charge":{"accel":30,"decel":150,"minSpeed":150,"stopSector":45},"wrapAngle":270,"maxAttackersPerTarget":3,"fileSpacing":1.2,"rankSpacing":1.4,"sight":150,"grassSight":15,"pointCtrlTime":5,"pointCaptureTime":100,"pointRadiusK":0.03,"pointRadiusMin":18,"deployTime":40,"battleTime":420,"zonePct":30,"squadScale":2,"budgetPerSquad":950,"limits":{"1v1":4,"2v2":3,"3v3":2},"squadsPerPlayer":{"1v1":12,"2v2":6,"3v3":4},"terrain":{"walls":true,"swamps":true,"rocks":true,"rivers":true,"bridges":true,"grass":true,"density":1,"flatMin":0.4},"mapSizes":[500,750,1000,1500,2000],"morale":true,"fog":true},"units":{"sword":{"name":"Мечники","cat":"canon","role":"melee","hp":200,"armor":35,"shield":25,"arc":180,"speed":100,"size":40,"ranks":4,"cost":800,"weapons":[{"id":"sword","name":"меч","dmg":60,"cd":1,"min":0,"max":1.3,"kind":"melee","fx":{}}],"abilities":[],"desc":"Универсальная пехота. Надёжна в любом бою.","morale":1.2},"axe":{"name":"Топорники","cat":"canon","role":"melee","hp":180,"armor":10,"shield":0,"arc":0,"speed":110,"size":40,"ranks":4,"cost":800,"weapons":[{"id":"axe","name":"топор","dmg":70,"cd":0.9,"min":0,"max":1.7,"kind":"melee","fx":{"axe":true}}],"abilities":[],"desc":"Быстрые, но почти без брони. Рубят щиты и латы.","morale":1},"spear":{"name":"Копейщики","cat":"canon","role":"melee","hp":240,"armor":60,"shield":40,"arc":120,"speed":85,"size":40,"ranks":4,"cost":850,"weapons":[{"id":"spear","name":"копьё","dmg":45,"cd":1.2,"min":0,"max":2,"kind":"melee","fx":{}}],"abilities":["antiCav"],"desc":"Гасят чардж конницы и держат строй.","morale":1.4},"pike":{"name":"Пикинеры","cat":"canon","role":"melee","hp":200,"armor":20,"shield":0,"arc":0,"speed":90,"size":40,"ranks":5,"cost":850,"weapons":[{"id":"pike","name":"пика","dmg":70,"cd":1.5,"min":3,"max":5,"kind":"melee","fx":{}},{"id":"psword","name":"меч","dmg":40,"cd":1,"min":0,"max":1.8,"kind":"melee","fx":{}}],"abilities":["antiCav"],"desc":"Длинные пики в первых рядах, вблизи слабы.","morale":1},"archer":{"name":"Лучники","cat":"canon","role":"ranged","hp":140,"armor":5,"shield":0,"arc":0,"speed":95,"size":30,"ranks":2,"cost":800,"weapons":[{"id":"bow","name":"лук","dmg":20,"cd":1.2,"min":5,"max":50,"kind":"ranged","ammo":30,"fx":{}},{"id":"dagger","name":"кинжал","dmg":25,"cd":1,"min":0,"max":1.5,"kind":"melee","fx":{}}],"abilities":[],"desc":"Дальний огонь. Слабы в рукопашной.","morale":0.6},"peltast":{"name":"Пельтасты","cat":"canon","role":"ranged","hp":180,"armor":20,"shield":10,"arc":90,"speed":105,"size":30,"ranks":3,"cost":800,"weapons":[{"id":"pilum","name":"пилум","dmg":75,"cd":1.2,"min":8,"max":10,"kind":"ranged","ammo":6,"fx":{"pilum":true}},{"id":"psw2","name":"кинжал","dmg":45,"cd":1,"min":0,"max":1.8,"kind":"melee","fx":{}}],"abilities":[],"desc":"Метают пилумы: ломают щиты и игнорируют броню.","morale":0.8},"cav":{"name":"Конница","cat":"canon","role":"cav","hp":250,"armor":35,"shield":0,"arc":0,"speed":100,"maxSpeed":400,"size":20,"ranks":2,"cost":1300,"weapons":[{"id":"lance","name":"копьё всадника","dmg":50,"cd":1.1,"min":0,"max":2.2,"kind":"melee","fx":{}}],"abilities":["charge"],"wide":true,"desc":"Разгоняется сама. Ломает строй, но боится копий.","morale":1.3},"shieldwall":{"name":"Щитоносцы","cat":"test","role":"melee","hp":260,"armor":70,"shield":50,"arc":150,"speed":70,"size":40,"ranks":4,"cost":1000,"weapons":[{"id":"spear","name":"копьё","dmg":35,"cd":1.2,"min":0,"max":2.5,"kind":"melee","fx":{}}],"abilities":["shieldWall"],"desc":"Медленные, но почти несокрушимые в строю.","morale":1.5},"xbow":{"name":"Арбалетчики","cat":"test","role":"ranged","hp":120,"armor":10,"shield":0,"arc":0,"speed":90,"size":30,"ranks":2,"cost":700,"weapons":[{"id":"xb","name":"арбалет","dmg":70,"cd":3.5,"min":30,"max":70,"kind":"ranged","ammo":20,"fx":{"armorPierce":0.5}},{"id":"xdag","name":"кинжал","dmg":20,"cd":0.8,"min":0,"max":1.5,"kind":"melee","fx":{}}],"abilities":[],"desc":"Короче дальность, но болты пробивают броню.","morale":0.6},"berserk":{"name":"Берсерки","cat":"test","role":"melee","hp":500,"armor":0,"shield":0,"arc":0,"speed":125,"size":15,"ranks":4,"cost":900,"weapons":[{"id":"axes","name":"два боевых топора","dmg":50,"cd":0.7,"min":0,"max":1.2,"kind":"melee","fx":{}}],"abilities":["berserk","fear"],"desc":"Без брони, быстры и яростны, не бегут с поля боя. Пугают врагов рядом.","morale":9999},"priest":{"name":"Жрецы","cat":"test","role":"melee","hp":160,"armor":10,"shield":0,"arc":0,"speed":95,"size":24,"ranks":3,"cost":800,"weapons":[{"id":"staff","name":"посох","dmg":20,"cd":1.2,"min":0,"max":1.8,"kind":"melee","fx":{}}],"abilities":["inspire"],"desc":"Слабо бьют, но поднимают мораль союзников рядом.","morale":3},"hxbow":{"name":"Конные лучники","cat":"test","role":"cav","hp":140,"armor":10,"shield":0,"arc":0,"speed":100,"maxSpeed":250,"size":20,"ranks":2,"cost":1000,"weapons":[{"id":"hbow","name":"лук","dmg":12,"cd":1.2,"min":5,"max":60,"kind":"ranged","ammo":30,"fx":{}},{"id":"hknife","name":"кинжал","dmg":20,"cd":0.8,"min":0,"max":1.8,"kind":"melee","fx":{}}],"abilities":["mountedFire","noCharge"],"wide":true,"desc":"Стреляют на скаку. Изматывают врага.","morale":0.9}}};
+window.__BUILD__={dev:false,built:"2026-11-01T11:46:51.494Z"};
 /* ===== Поле брани: ядро (карта + побойцовый движок). Работает и в браузере, и в Node ===== */
 (function(root){
 'use strict';
@@ -323,7 +400,7 @@ function createSim(bal,opts,players,armies,seed){
     arm.forEach((a,ai)=>{ const U=units[a.unit]; if(!U)return;
       const n=Math.max(2,Math.round(U.size*g.squadScale));
       const sq={id:sim.squads.length,owner:pi,team:sim.players[pi].team,unit:a.unit,U,soldiers:[],nAlive:0,order:{k:'hold'},cx:0,cy:0,face:0,width:10,run:false,fire:true,
-        fsp:fsp0*(U.wide?1.7:1),rsp:rsp0*(U.wide?1.7:1),lastCombat:-999,mor:100,rec:0,ex:0,routed:false,routT:0,focus:null,focusT:0,mx:0,my:0,rad:5,reach:0,ranged:false};
+        hf:false,mar:false,marPrev:false,wx:0,wy:0,wf:0,fsp:fsp0*(U.wide?1.7:1),rsp:rsp0*(U.wide?1.7:1),lastCombat:-999,mor:100,rec:0,ex:0,routed:false,routT:0,focus:null,focusT:0,mx:0,my:0,rad:5,reach:0,ranged:false};
       for(const w of U.weapons){ if(w.kind==='ranged'&&w.max>sq.reach)sq.reach=w.max; if(w.kind==='ranged')sq.ranged=true; }
       sq.width=Math.max(2,Math.ceil(n/(U.ranks||4)));
       for(let i=0;i<n;i++){
@@ -338,8 +415,9 @@ function createSim(bal,opts,players,armies,seed){
   /* ------- геометрия строя ------- */
   function slotXY(sq,i,o){
     const n=sq.nAlive, w=Math.max(1,Math.min(sq.width,n)), row=(i/w)|0, f=i%w, inRow=Math.min(w,n-row*w);
-    const lat=(f-(inRow-1)/2)*sq.fsp, dep=row*sq.rsp, fx=Math.cos(sq.face), fy=Math.sin(sq.face);
-    o.x=sq.cx-fy*lat-fx*dep; o.y=sq.cy+fx*lat-fy*dep; return o;
+    const fc=sq.mar?sq.wf:sq.face, bx=sq.mar?sq.wx:sq.cx, by=sq.mar?sq.wy:sq.cy;
+    const lat=(f-(inRow-1)/2)*sq.fsp, dep=row*sq.rsp, fx=Math.cos(fc), fy=Math.sin(fc);
+    o.x=bx-fy*lat-fx*dep; o.y=by+fx*lat-fy*dep; return o;
   }
   sim.slotXY=slotXY;
   function reslot(sq){let i=0;for(const s of sq.soldiers)if(s.alive)s.slot=i++;sq.nAlive=i;}
@@ -396,10 +474,11 @@ function createSim(bal,opts,players,armies,seed){
         sq.order={k:'move'}; sq.cx=clamp(o.x,2,S-2); sq.cy=clamp(o.y,2,S-2);
         if(o.face!=null)sq.face=o.face; else { const dx=sq.cx-sq.mx,dy=sq.cy-sq.my; if(Math.hypot(dx,dy)>3)sq.face=Math.atan2(dy,dx); }
         if(o.width)sq.width=clamp(Math.round(o.width),1,sq.nAlive); sq.run=!!o.run; reslot(sq); break; }
-      case 'attack': { const t=sim.squads[o.target]; if(!t||t.team===sq.team||t.nAlive<=0)return false; sq.order={k:'attack',target:t.id}; sq.run=true; break; }
+      case 'attack': { const t=sim.squads[o.target]; if(!t||t.team===sq.team||t.nAlive<=0)return false; sq.order={k:'attack',target:t.id}; sq.run=true; sq.tgSeen=false; sq.pg=null; break; }
       case 'stop': { reslot(sq); sq.cx=sq.mx; sq.cy=sq.my; sq.order={k:'hold'}; break; }
       case 'run': sq.run=!!o.v; break;
       case 'fire': sq.fire=!!o.v; break;
+      case 'hold': sq.hf=!!o.v; break;
       case 'width': sq.width=clamp(Math.round(o.w),1,sq.nAlive); reslot(sq); if(sq.order.k==='hold'||sq.order.k==='move'){} break;
       default: return false;
     }
@@ -448,6 +527,84 @@ function createSim(bal,opts,players,armies,seed){
     return best;
   }
 
+/* ------- навигация: сетка проходимости и поиск пути (A*) ------- */
+  const nav=(function(){
+    const cs=S>=1500?5:4, n=Math.ceil(S/cs), N=n*n, blk=new Uint8Array(N), cost=new Float32Array(N).fill(1), clr=new Float32Array(N);
+    const pad=g.soldierRadius+0.4, ci=v=>Math.max(0,Math.min(n-1,(v/cs)|0));
+    for(const q of map.rocks){ const R=q.r*1.45+pad+cs, x0=ci(q.x-R),x1=ci(q.x+R),y0=ci(q.y-R),y1=ci(q.y+R);
+      for(let j=y0;j<=y1;j++)for(let i=x0;i<=x1;i++){ const dx=(i+.5)*cs-q.x,dy=(j+.5)*cs-q.y; if(Math.hypot(dx,dy)<blobR(q,Math.atan2(dy,dx))+pad+cs*0.35)blk[j*n+i]=1; } }
+    for(const q of map.rects){ const R=q.hw+q.hh+pad+cs, x0=ci(q.x-R),x1=ci(q.x+R),y0=ci(q.y-R),y1=ci(q.y+R);
+      for(let j=y0;j<=y1;j++)for(let i=x0;i<=x1;i++){ const dx=(i+.5)*cs-q.x,dy=(j+.5)*cs-q.y, lx=dx*q.c+dy*q.s, ly=-dx*q.s+dy*q.c; if(Math.hypot(Math.max(Math.abs(lx)-q.hw,0),Math.max(Math.abs(ly)-q.hh,0))<pad+cs*0.35)blk[j*n+i]=1; } }
+    for(let i=0;i<n;i++){ blk[i]=1; blk[(n-1)*n+i]=1; blk[i*n]=1; blk[i*n+n-1]=1; }
+    for(const q of map.swamps){ const R=q.r*1.45+cs, x0=ci(q.x-R),x1=ci(q.x+R),y0=ci(q.y-R),y1=ci(q.y+R);
+      for(let j=y0;j<=y1;j++)for(let i=x0;i<=x1;i++){ if(inBlob(q,(i+.5)*cs,(j+.5)*cs))cost[j*n+i]=1.8; } }
+    for(const f of map.fords){ for(let i=0;i<n;i++){ const x=(i+.5)*cs, fy=f.f(x), y0=ci(fy-f.hh-cs), y1=ci(fy+f.hh+cs); for(let j=y0;j<=y1;j++){ if(Math.abs((j+.5)*cs-fy)<f.hh+cs*.5)cost[j*n+i]=Math.max(cost[j*n+i],2); } } }
+    const INF=1e9; for(let i=0;i<N;i++)clr[i]=blk[i]?0:INF; const dg=cs*1.414;
+    for(let j=0;j<n;j++)for(let i=0;i<n;i++){ const k=j*n+i; let v=clr[k]; if(!v)continue; if(i>0)v=Math.min(v,clr[k-1]+cs); if(j>0){ v=Math.min(v,clr[k-n]+cs); if(i>0)v=Math.min(v,clr[k-n-1]+dg); if(i<n-1)v=Math.min(v,clr[k-n+1]+dg); } clr[k]=v; }
+    for(let j=n-1;j>=0;j--)for(let i=n-1;i>=0;i--){ const k=j*n+i; let v=clr[k]; if(!v)continue; if(i<n-1)v=Math.min(v,clr[k+1]+cs); if(j<n-1){ v=Math.min(v,clr[k+n]+cs); if(i<n-1)v=Math.min(v,clr[k+n+1]+dg); if(i>0)v=Math.min(v,clr[k+n-1]+dg); } clr[k]=v; }
+    const gs=new Float32Array(N), came=new Int32Array(N), stamp=new Int32Array(N), done=new Int32Array(N); let run=0;
+    const hk=[],hv=[]; // бинарная куча
+    function hpush(k,v){ let i=hk.length; hk.push(k); hv.push(v); while(i>0){ const p=(i-1)>>1; if(hk[p]<=k)break; hk[i]=hk[p]; hv[i]=hv[p]; i=p; } hk[i]=k; hv[i]=v; }
+    function hpop(){ const v0=hv[0], k=hk.pop(), v=hv.pop(); const m=hk.length; if(m){ let i=0; for(;;){ let c=2*i+1; if(c>=m)break; if(c+1<m&&hk[c+1]<hk[c])c++; if(hk[c]>=k)break; hk[i]=hk[c]; hv[i]=hv[c]; i=c; } hk[i]=k; hv[i]=v; } return v0; }
+    function near(x,y,cl){ const i0=ci(x),j0=ci(y); if(clr[j0*n+i0]>=cl)return j0*n+i0;
+      for(let r=1;r<=14;r++){ let best=-1,bd=1e9; for(let j=j0-r;j<=j0+r;j++)for(let i=i0-r;i<=i0+r;i++){ if(i<0||j<0||i>=n||j>=n)continue; if(Math.max(Math.abs(i-i0),Math.abs(j-j0))!==r)continue; if(clr[j*n+i]>=cl){ const d=(i-i0)*(i-i0)+(j-j0)*(j-j0); if(d<bd){bd=d;best=j*n+i;} } } if(best>=0)return best; } return -1; }
+    function los(x0,y0,x1,y1,cl){ const d=Math.hypot(x1-x0,y1-y0), k=Math.max(1,Math.ceil(d/(cs*0.5))); for(let i=0;i<=k;i++){ const t=i/k, x=x0+(x1-x0)*t, y=y0+(y1-y0)*t; if(clr[ci(y)*n+ci(x)]<cl)return false; } return true; }
+    function astar(sx,sy,gx,gy,cl){
+      const s=near(sx,sy,cl), t=near(gx,gy,cl); if(s<0||t<0)return null;
+      const tx=t%n, ty=(t/n)|0; run++; hk.length=0; hv.length=0; gs[s]=0; stamp[s]=run; came[s]=-1; hpush(0,s); let found=false;
+      while(hk.length){ const u=hpop(); if(done[u]===run)continue; done[u]=run; if(u===t){found=true;break;}
+        const ux=u%n, uy=(u/n)|0;
+        for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){ if(!dx&&!dy)continue; const vx=ux+dx, vy=uy+dy; if(vx<0||vy<0||vx>=n||vy>=n)continue; const v=vy*n+vx; if(clr[v]<cl||done[v]===run)continue;
+          if(dx&&dy&&(clr[uy*n+vx]<cl||clr[vy*n+ux]<cl))continue;
+          const ng=gs[u]+(dx&&dy?1.414:1)*cs*0.5*(cost[u]+cost[v]); if(stamp[v]!==run||ng<gs[v]){ stamp[v]=run; gs[v]=ng; came[v]=u; const ex=Math.abs(vx-tx), ey=Math.abs(vy-ty); hpush(ng+(Math.max(ex,ey)+0.414*Math.min(ex,ey))*cs,v); } } }
+      if(!found)return null;
+      const pts=[]; for(let c=t;c>=0;c=came[c])pts.push({x:((c%n)+.5)*cs,y:(((c/n)|0)+.5)*cs}); pts.reverse();
+      pts[0]={x:sx,y:sy}; if(t===near(gx,gy,0))pts[pts.length-1]={x:gx,y:gy}; else pts.push({x:gx,y:gy});
+      const out=[pts[0]]; let i=0; while(i<pts.length-1){ let j=pts.length-1; while(j>i+1&&!los(pts[i].x,pts[i].y,pts[j].x,pts[j].y,cl))j--; out.push(pts[j]); i=j; }
+      return out;
+    }
+    const plen=p=>{ let L=0; for(let i=1;i<p.length;i++)L+=Math.hypot(p[i].x-p[i-1].x,p[i].y-p[i-1].y); return L; };
+    function path(sx,sy,gx,gy,halfW){
+      if(los(sx,sy,gx,gy,cs+halfW*0.0+Math.min(halfW,30)+1))return [{x:sx,y:sy},{x:gx,y:gy}];
+      const small=astar(sx,sy,gx,gy,cs); if(!small)return null;
+      const cl=Math.min(halfW,30)+cs*0.5+1; const big=cl>cs?astar(sx,sy,gx,gy,cl):null;
+      if(big&&plen(big)<=plen(small)*1.3+40)return big; return small; }
+    function blockedAt(x,y){ return blk[ci(y)*n+ci(x)]===1; }
+    return {cs,n,blk,clr,cost,path,los:(x0,y0,x1,y1)=>los(x0,y0,x1,y1,cs),blockedAt,astar};
+  })();
+  sim.nav=nav;
+  /* марш строем: отряд идёт по найденному пути единым блоком */
+  function marchStep(sq,dt){
+    const o=sq.order, was=sq.mar; sq.mar=false; if(sq.routed||sq.nAlive<=0)return;
+    let gx,gy,faceFin=sq.face,holdHere=false;
+    if(o.k==='move'){ gx=sq.cx; gy=sq.cy; }
+    else if(o.k==='attack'){
+      const t=sim.squads[o.target]; if(!t||t.nAlive<=0)return;
+      if(isVisible(sq.team,t)){ sq.tgx=t.mx; sq.tgy=t.my; sq.tgSeen=true; } if(!sq.tgSeen)return;
+      const tx=sq.tgx, ty=sq.tgy, dd=Math.hypot(tx-sq.mx,ty-sq.my)||1, edge=dd-t.rad-sq.rad*0.5, clear=nav.los(sq.mx,sq.my,tx,ty);
+      faceFin=Math.atan2(ty-sq.my,tx-sq.mx);
+      if(!sq.hf){ if((sq.ranged?edge<sq.reach*0.85:edge<20)&&clear){ sq.pg=null; return; } }
+      else if(sq.ranged&&edge<sq.reach*0.85&&clear)holdHere=true;
+      let nx=tx,ny=ty; if(isVisible(sq.team,t)){ let nd=1e18; for(const e of t.soldiers){ if(!e.alive)continue; const q=(e.x-sq.mx)*(e.x-sq.mx)+(e.y-sq.my)*(e.y-sq.my); if(q<nd){nd=q;nx=e.x;ny=e.y;} } }
+      const dn=Math.hypot(nx-sq.mx,ny-sq.my)||1; gx=nx-(nx-sq.mx)/dn*1.6; gy=ny-(ny-sq.my)/dn*1.6;
+    } else { sq.pg=null; return; }
+    if(!was){ sq.wf=sq.face; sq.wx=sq.mx; sq.wy=sq.my; sq.pg=null; }
+    sq.mar=true;
+    if(holdHere){ sq.wx=sq.mx; sq.wy=sq.my; sq.wf+=clamp(angDiff(faceFin,sq.wf),-0.08,0.08); return; }
+    sq.pT=(sq.pT||0)-dt;
+    if(!sq.pg||sq.pT<=0||Math.hypot(sq.pg.x-gx,sq.pg.y-gy)>(o.k==='attack'?7:0.5)){
+      sq.pT=o.k==='attack'?0.8:3; sq.pg={x:gx,y:gy}; const hw=((Math.min(sq.width,sq.nAlive)-1)*sq.fsp)/2+1.5;
+      sq.path=nav.path(sq.mx,sq.my,gx,gy,hw)||[{x:sq.mx,y:sq.my},{x:gx,y:gy}]; sq.pi=1; }
+    const path=sq.path; const rows=Math.ceil(sq.nAlive/Math.max(1,Math.min(sq.width,sq.nAlive))), reachD=Math.max(rows*sq.rsp/2+6,13);
+    while(sq.pi<path.length-1&&Math.hypot(path[sq.pi].x-sq.mx,path[sq.pi].y-sq.my)<reachD)sq.pi++;
+    const last=sq.pi>=path.length-1, wp=path[Math.min(sq.pi,path.length-1)], dx=wp.x-sq.mx, dy=wp.y-sq.my, d=Math.hypot(dx,dy)||1, L=Math.max(18,rows*sq.rsp/2+14);
+    let tf;
+    if(d>L){ sq.wx=sq.mx+dx/d*L; sq.wy=sq.my+dy/d*L; tf=Math.atan2(dy,dx); }
+    else if(last){ sq.wx=gx; sq.wy=gy; tf=faceFin; }
+    else { sq.wx=wp.x; sq.wy=wp.y; tf=Math.atan2(dy,dx); }
+    sq.wf+=clamp(angDiff(tf,sq.wf),-0.09,0.09); if(sq.wf>PI)sq.wf-=TAU; else if(sq.wf<-PI)sq.wf+=TAU;
+  }
+  
   /* ------- шаг симуляции ------- */
   function terrainFlags(s){
     let sw=false,hl=false,gr=false,sp=1;
@@ -559,7 +716,7 @@ function createSim(bal,opts,players,armies,seed){
         if(inRange){attackAllowed=true;haveGoal=false;faceTo=tg;}
         else{
           const toFar=d>reach;
-          const chaseOK=ord.k==='attack'||d<16||(U.role==='ranged'&&toFar&&sq.fire&&false);
+          const chaseOK=(!sq.mar&&!sq.hf&&(ord.k==='attack'||d<16))||(sq.hf&&d<5&&Math.hypot(tg.x-slx,tg.y-sly)<9);
           const tooClose=d<w.min-0.5;
           if(tooClose&&rangedFallbackMelee&&d>10){haveGoal=true;goalX=slx;goalY=sly;}
           else if(chaseOK&&Math.hypot(tg.x-sq.cx,tg.y-sq.cy)<(ord.k==='attack'?9999:40)){
@@ -569,8 +726,23 @@ function createSim(bal,opts,players,armies,seed){
         }
       }else{goalX=slx;goalY=sly;haveGoal=true;}
     }
+    // обход препятствий по пути A*
+    if(haveGoal){
+      const gd=Math.hypot(goalX-s.x,goalY-s.y);
+      if(gd<=3){ s.np=null; }
+      else{
+        s.navT=(s.navT||0)-dt;
+        if(s.navT<=0){
+          if(nav.los(s.x,s.y,goalX,goalY)){ s.np=null; s.navT=0.35+Math.random()*0.3; }
+          else if(sim.navBudget>0){ sim.navBudget--; const pth=nav.path(s.x,s.y,goalX,goalY,0); s.np=pth&&pth.length>1?pth:null; s.npi=1; s.navT=0.6+Math.random()*0.4; }
+          else s.navT=0.08;
+        }
+        if(s.np){ const np=s.np; while(s.npi<np.length-1&&Math.hypot(np[s.npi].x-s.x,np[s.npi].y-s.y)<3)s.npi++;
+          if(s.npi<np.length-1||Math.hypot(np[np.length-1].x-goalX,np[np.length-1].y-goalY)>20){ goalX=np[Math.min(s.npi,np.length-1)].x; goalY=np[Math.min(s.npi,np.length-1)].y; } else { s.np=null; } }
+      }
+    }
     // маршрут через мосты
-    if(haveGoal&&map.rivers.length&&map.bridges.length){
+    if(haveGoal&&!s.np&&map.rivers.length&&map.bridges.length){
       for(const rv of map.rivers){
         const cs=rv.f(s.x), cg=rv.f(goalX), sy=s.y-cs, gy=goalY-cg, edge=rv.hw*1.12+2.5, inBand=Math.abs(sy)<=edge, side=sy<0?-1:1, wantSide=gy<0?-1:1;
         if(!inBand&&(side===wantSide&&Math.abs(gy)>edge))continue;
@@ -686,7 +858,7 @@ function createSim(bal,opts,players,armies,seed){
 
   sim.start=function(){ if(sim.phase!=='deploy')return; sim.phase='battle'; sim.t=0; sim.phaseT=g.battleTime; for(const sq of sim.squads){ updateSquadStats(sq); sq.cx=sq.mx; sq.cy=sq.my; reslot(sq); } };
   sim.step=function(){
-    const dt=DT; sim.tick++;
+    const dt=DT; sim.tick++; sim.navBudget=10;
     if(sim.phase==='deploy'){
       sim.phaseT-=dt; const humans=sim.players.filter(p=>p.human&&!p.gone);
       if(sim.phaseT<=0||(humans.length&&humans.every(p=>p.ready)))sim.start();
@@ -698,7 +870,7 @@ function createSim(bal,opts,players,armies,seed){
     for(const s of sim.sol)s.nAtt=0;
     for(const s of sim.sol)if(s.alive&&s.tg&&s.tg.alive)s.tg.nAtt++;
     if(sim.tick%4===0)computeVision();
-    for(const sq of sim.squads){ updateSquadStats(sq); sq.focusT-=dt; if(sq.focusT<=0||(sq.focus&&sq.focus.nAlive<=0)){pickFocus(sq);sq.focusT=0.4+Math.random()*0.3;} }
+    for(const sq of sim.squads){ updateSquadStats(sq); marchStep(sq,dt); sq.focusT-=dt; if(sq.focusT<=0||(sq.focus&&sq.focus.nAlive<=0)){pickFocus(sq);sq.focusT=0.4+Math.random()*0.3;} }
     if(g.morale!==false)moraleStep(dt);
     const arr=sim.sol;
     for(let i=0;i<arr.length;i++){const s=arr[i]; if(s.alive)stepSoldier(s,dt);}
@@ -709,7 +881,7 @@ function createSim(bal,opts,players,armies,seed){
     collide(); obstacles();
     updatePoint(dt);
     // «приказ выполнен» -> стойка
-    for(const sq of sim.squads){ if(sq.order.k==='move'&&sq.nAlive>0){ let far=0; for(const s of sq.soldiers){ if(!s.alive)continue; slotXY(sq,s.slot,tmp); if(Math.hypot(tmp.x-s.x,tmp.y-s.y)>3){far++;} } if(far===0)sq.order={k:'hold'}; } }
+    for(const sq of sim.squads){ if(sq.order.k==='move'&&sq.nAlive>0&&(!sq.mar||(sq.wx===sq.cx&&sq.wy===sq.cy))){ let far=0; for(const s of sq.soldiers){ if(!s.alive)continue; slotXY(sq,s.slot,tmp); if(Math.hypot(tmp.x-s.x,tmp.y-s.y)>3){far++;} } if(far===0)sq.order={k:'hold'}; } }
     // победа
     const alive=[0,0]; for(const sq of sim.squads)alive[sq.team]+=sq.nAlive;
     if(!sim.over){
@@ -807,7 +979,7 @@ if(typeof module!=='undefined')module.exports=PB;
 (function(root){
 'use strict';
 const PB=root.PB=root.PB||{};
-const DICT={"Скорость 100% (м/с)": ["Speed at 100% (m/s)", "100%速度（米/秒）"], "Множитель шага": ["Step multiplier", "步幅倍数"], "Радиус бойца (м)": ["Soldier radius (m)", "士兵半径（米）"], "Поворот пехоты (рад/с)": ["Infantry turn rate (rad/s)", "步兵转向（弧度/秒）"], "Поворот конницы (рад/с)": ["Cavalry turn rate (rad/s)", "骑兵转向（弧度/秒）"], "Регенерация: задержка (с)": ["Regeneration: delay (s)", "恢复：延迟（秒）"], "Регенерация: доля HP в секунду": ["Regeneration: HP fraction per second", "恢复：每秒生命比例"], "Регенерация: предел (доля HP)": ["Regeneration: cap (HP fraction)", "恢复：上限（生命比例）"], "Смена оружия (с)": ["Weapon switch (s)", "换武器（秒）"], "Топор: снимает за удар": ["Axe: removed per hit", "斧：每击削减"], "Окружение цели (°, 180–270)": ["Target encirclement (°, 180–270)", "包围目标（度，180–270）"], "Атакующих на одну цель": ["Attackers per target", "每个目标的攻击者数"], "Интервал в шеренге (м)": ["Spacing in rank (m)", "队列间距（米）"], "Интервал между шеренгами (м)": ["Spacing between ranks (m)", "行间距（米）"], "Видимость при тумане (м)": ["Fog sight range (m)", "迷雾视野（米）"], "Видимость в траве (м)": ["Sight range in grass (m)", "草丛视野（米）"], "До контроля точки (с)": ["Time to control point (s)", "控制据点用时（秒）"], "До захвата точки (с)": ["Time to capture point (s)", "占领据点用时（秒）"], "Радиус точки (доля карты)": ["Point radius (map fraction)", "据点半径（地图比例）"], "Радиус точки, минимум (м)": ["Point radius, minimum (m)", "据点最小半径（米）"], "Время расстановки (с)": ["Deployment time (s)", "布阵时间（秒）"], "Зона каждой стороны (% карты)": ["Each side zone (% of map)", "每方区域（地图百分比）"], "Размер отрядов (множитель)": ["Squad size (multiplier)", "部队规模（倍数）"], "Очков на один отряд": ["Points per squad", "每个部队的点数"], "Плотность объектов рельефа": ["Terrain object density", "地形物体密度"], "Минимум ровной местности (доля)": ["Minimum open ground (fraction)", "最小开阔地（比例）"], "Чардж: разгон (%/с)": ["Charge: acceleration (%/s)", "冲锋：加速（%/秒）"], "Чардж: торможение (%/с)": ["Charge: deceleration (%/s)", "冲锋：减速（%/秒）"], "Чардж: от скорости (%)": ["Charge: from speed (%)", "冲锋：起始速度（%）"], "Остановка чарджа копьём (±°)": ["Spear charge stop (±°)", "长矛止冲（±度）"], "1 на 1": ["1 vs 1", "1对1"], "2 на 2": ["2 vs 2", "2对2"], "3 на 3": ["3 vs 3", "3对3"], "Стены": ["Walls", "墙壁"], "Болота": ["Swamps", "沼泽"], "Камни": ["Rocks", "岩石"], "Реки": ["Rivers", "河流"], "Мосты": ["Bridges", "桥梁"], "Высокая трава": ["Tall grass", "高草"], "Неизвестный отряд": ["Unknown squad", "未知部队"], "Тестовые отряды выключены": ["Test squads are disabled", "测试部队已关闭"], "Нужно ровно ": ["Exactly ", "需要正好 "], " отрядов (сейчас ": [" squads needed (now ", " 个部队（当前 "], "Превышен бюджет очков: ": ["Point budget exceeded: ", "超出点数预算："], " из ": [" of ", " / "], "Одинаковых отрядов не больше ": ["No more than this many identical squads: ", "相同部队最多 "], "Версия баланса ": ["Balance version ", "平衡版本 "], " · сборка ": [" · build ", " · 构建 "], " · режим разработчика": [" · developer mode", " · 开发者模式"], "Введите имя и нажмите «Войти по коду»": ["Enter a name and press “Join by code”", "输入名字并点击“输入代码加入”"], "Профиль": ["Profile", "档案"], "Рейтинговый бой": ["Ranked battle", "排位战"], "Друзья": ["Friends", "好友"], ": раздел появится позже": [": section coming later", "：该部分稍后推出"], "Полководец": ["Commander", "指挥官"], "Создаём лобби…": ["Creating lobby…", "正在创建房间…"], "Связь с сервером потеряна": ["Connection to server lost", "与服务器的连接已断开"], "Связь с сервером потеряна.": ["Connection to server lost.", "与服务器的连接已断开。"], "Введите код лобби": ["Enter lobby code", "请输入房间代码"], "Подключаемся…": ["Connecting…", "正在连接…"], "Связь с хостом потеряна": ["Connection to host lost", "与主机的连接已断开"], "Хост закрыл лобби.": ["The host closed the lobby.", "主机已关闭房间。"], "Ждём ответа хоста…": ["Waiting for the host…", "等待主机响应…"], "Скопировано": ["Copied", "已复制"], "Скопируйте:": ["Copy this:", "请复制："], "Бой уже идёт": ["The battle is already in progress", "战斗已经开始"], "Версия игры отличается (у вас ": ["Game version differs (yours: ", "游戏版本不一致（您的版本："], ", у хоста ": [", host: ", "，主机版本："], "). Обновите страницу: Ctrl+F5.": ["). Refresh the page: Ctrl+F5.", "）。请刷新页面：Ctrl+F5。"], "В лобби нет свободных мест": ["No free slots in the lobby", "房间已无空位"], "Игрок": ["Player", "玩家"], " отключился, его отряды ведёт бот": [" disconnected, a bot controls their squads", " 已断线，其部队由机器人接管"], "Лобби стало меньше": ["The lobby became smaller", "房间人数减少"], "Отказано": ["Refused", "已拒绝"], "Тренировка против ИИ": ["Training against AI", "对战AI训练"], "Лобби · ": ["Lobby · ", "房间 · "], "открытое": ["open", "公开"], "закрытое": ["closed", "私密"], "Скажите друзьям код, они вводят его в меню (у файла нет ссылки). Лучше выложить игру на хостинг.": ["Tell your friends the code; they enter it in the menu (a file has no link). It is better to host the game online.", "把代码告诉朋友，他们在菜单中输入（文件没有链接）。最好把游戏放到网上。"], "Отправьте друзьям ссылку или код": ["Send your friends the link or the code", "把链接或代码发给朋友"], "Синие": ["Blue", "蓝方"], "Красные": ["Red", "红方"], " · хост": [" · host", " · 主机"], "армия не готова": ["army not ready", "军队未就绪"], "хост": ["host", "主机"], "готов": ["ready", "已准备"], "не готов": ["not ready", "未准备"], "свободно (будет бот)": ["free (a bot will join)", "空位（将由机器人填补）"], "свободно": ["free", "空位"], "Остальные места займёт бот.": ["Bots will take the remaining slots.", "其余位置由机器人填补。"], "Нажмите на свободное место, чтобы пересесть.": ["Click a free slot to switch seats.", "点击空位以换位。"], "Не готов": ["Not ready", "未准备"], "Готов": ["Ready", "准备"], "Соберите свою армию": ["Build your army", "组建你的军队"], "Ждём готовности игроков": ["Waiting for players to be ready", "等待玩家准备"], "Есть свободные места, а боты выключены": ["There are free slots but bots are off", "有空位但机器人已关闭"], "Режим": ["Mode", "模式"], " отрядов)": [" squads)", " 个部队）"], "Ограничение армии": ["Army limit", "军队限制"], "Очки (стоимость)": ["Points (cost)", "点数（费用）"], "Лимит одинаковых": ["Identical-squad limit", "相同部队上限"], "Без ограничений": ["No limits", "无限制"], "Размер карты": ["Map size", "地图大小"], " м": [" m", " 米"], "Рельеф": ["Terrain", "地形"], "Процедурная генерация": ["Procedural generation", "程序生成"], "Чистое поле": ["Open field", "空旷平原"], "Время боя (мин)": ["Battle time (min)", "战斗时间（分钟）"], "Туман войны": ["Fog of war", "战争迷雾"], "Мораль": ["Morale", "士气"], "Тестовые юниты": ["Test units", "测试单位"], "Боты на свободные места": ["Bots on free slots", "空位由机器人填补"], "Лобби": ["Lobby", "房间"], "Закрытое (по коду)": ["Closed (by code)", "私密（凭代码）"], "Открытое (в списке комнат)": ["Open (in the room list)", "公开（显示在房间列表）"], "Объекты генерации: уберите галочку у того, что мешает или работает плохо.": ["Generated objects: untick anything that gets in the way or works badly.", "生成物体：取消勾选碍事或效果不好的项目。"], "Мелкие настройки": ["Minor settings", "细节设置"], "Лимит одинаковых отрядов": ["Identical-squad limit", "相同部队上限"], "Загрузить файл баланса…": ["Load balance file…", "载入平衡文件…"], "Сбросить на стандартные": ["Reset to defaults", "恢复默认"], "нет units/global": ["no units/global", "缺少 units/global"], "Баланс загружен: ": ["Balance loaded: ", "平衡已载入："], "Не удалось прочитать баланс: ": ["Could not read balance: ", "无法读取平衡文件："], "Атака": ["Attack", "攻击"], "Защита": ["Defense", "防御"], "Скорость": ["Speed", "速度"], "Дальность": ["Range", "射程"], "Здоровье": ["Health", "生命"], " · боезапас ": [" · ammo ", " · 弹药 "], " залпов": [" volleys", " 轮齐射"], "не бегут": ["never rout", "永不溃逃"], "очень высокая": ["very high", "极高"], "высокая": ["high", "高"], "средняя": ["medium", "中"], "ниже средней": ["below average", "偏低"], "низкая": ["low", "低"], "до ": ["up to ", "至 "], "вплотную": ["melee", "近身"], "доп.: ": ["alt: ", "副："], "</b><span>урон ": ["</b><span>damage ", "</b><span>伤害 "], " с · ": [" s · ", " 秒 · "], "Бойцов в отряде": ["Soldiers in squad", "部队人数"], "Здоровье бойца": ["Soldier health", "士兵生命"], "Броня": ["Armor", "护甲"], "Щит": ["Shield", "盾牌"], " (сектор ": [" (arc ", " （扇区 "], "нет": ["none", "无"], "Шеренг": ["Ranks", "行数"], "<div class=\"ab\"><b>Умения:</b> ": ["<div class=\"ab\"><b>Abilities:</b> ", "<div class=\"ab\"><b>技能：</b> "], " отрядов. ": [" squads. ", " 个部队。"], "Лимит очков общий для всех.": ["The point limit is shared by everyone.", "点数上限对所有人通用。"], "Не более ": ["No more than ", "最多 "], " одинаковых отрядов.": [" identical squads.", " 个相同部队。"], "Без ограничений по очкам.": ["No point limit.", "无点数限制。"], "Очки: <b>": ["Points: <b>", "点数：<b>"], "Отрядов: <b>": ["Squads: <b>", "部队：<b>"], "тест": ["test", "测试"], "<div class=\"u2h\"><img class=\"ico\" alt=\"\"><span class=\"u2t\"><span class=\"u2n\"></span><span class=\"u2c\"></span></span></div><div class=\"u2s\"></div><div class=\"u2b\"><button class=\"btn s mo\">Подробнее</button><span class=\"cnt\"><button class=\"mi\">−</button><b></b><button class=\"pl\">+</button></span></div><div class=\"det\"></div>": ["<div class=\"u2h\"><img class=\"ico\" alt=\"\"><span class=\"u2t\"><span class=\"u2n\"></span><span class=\"u2c\"></span></span></div><div class=\"u2s\"></div><div class=\"u2b\"><button class=\"btn s mo\">Details</button><span class=\"cnt\"><button class=\"mi\">−</button><b></b><button class=\"pl\">+</button></span></div><div class=\"det\"></div>", "<div class=\"u2h\"><img class=\"ico\" alt=\"\"><span class=\"u2t\"><span class=\"u2n\"></span><span class=\"u2c\"></span></span></div><div class=\"u2s\"></div><div class=\"u2b\"><button class=\"btn s mo\">详情</button><span class=\"cnt\"><button class=\"mi\">−</button><b></b><button class=\"pl\">+</button></span></div><div class=\"det\"></div>"], " очков · ": [" pts · ", " 点 · "], " бойцов": [" soldiers", " 名士兵"], "Свернуть": ["Collapse", "收起"], "Подробнее": ["Details", "详情"], "Убрать отряд": ["Remove squad", "移除部队"], ". свободно": [". free", "。空位"], "Армия готова": ["Army ready", "军队已就绪"], "Останавливает чардж спереди": ["Stops frontal charges", "正面止冲"], "Чардж по скорости": ["Speed-based charge", "按速度冲锋"], "«Стена»: стоя 2 с, +30 к щиту": ["“Wall”: standing 2 s, +30 shield", "“盾墙”：站立2秒，盾牌+30"], "«Ярость»: ниже 50% HP быстрее бьёт, не лечится": ["“Rage”: below 50% HP strikes faster, no healing", "“狂怒”：生命低于50%时攻速更快，无法恢复"], "Поднимает мораль союзников рядом (−45% давления)": ["Raises morale of nearby allies (−45% pressure)", "提升附近友军士气（压力−45%）"], "Пугающая аура: враги рядом теряют мораль": ["Fear aura: nearby enemies lose morale", "恐惧光环：附近敌人士气下降"], "Стреляет на скаку": ["Shoots on the move", "可骑射"], "Снимает 20 щита/брони за удар": ["Removes 20 shield/armor per hit", "每击削减20盾牌/护甲"], "Игнорирует броню, ломает щит": ["Ignores armor, breaks shields", "无视护甲，破坏盾牌"], "Пробивает 50% брони": ["Pierces 50% of armor", "穿透50%护甲"], "Бот ": ["Bot ", "机器人 "], " очков": [" points", " 点"], "Зоны и точка": ["Zones and the point", "区域与据点"], "Карта делится на три полосы: у каждой стороны своя зона расстановки (по ": ["The map is split into three strips: each side has its own deployment zone (", "地图分为三条带：每方有自己的布阵区（各占 "], "% карты), между ними нейтральная полоса. В центре точка: удержите её до полного захвата или уничтожьте армию противника.": ["% of the map each), with a neutral strip between them. In the centre is a point: hold it until full capture or destroy the enemy army.", "% 的地图），中间是中立带。中央有一个据点：守住它直到完全占领，或消灭敌军。"], "Река и мосты": ["River and bridges", "河流与桥梁"], "Одна извилистая река пересекает нейтральную полосу. Пройти её можно только по мостам: на мостах строй сжимается, и именно там идут самые тяжёлые бои. Без мостов река превращается в брод: движение вдвое медленнее.": ["One winding river crosses the neutral strip. It can only be crossed by bridges: formations squeeze together on bridges, and that is where the heaviest fighting happens. Away from bridges the river is a ford: movement is twice as slow.", "一条蜿蜒的河流穿过中立带。只能通过桥梁渡河：桥上队形收窄，最激烈的战斗就发生在那里。没有桥的地方是浅滩：移动速度减半。"], "Болото": ["Swamp", "沼泽"], "Одно большое болото. Скорость бойцов почти вдвое ниже, конница в нём не может разогнаться и не наносит удар чарджем.": ["One large swamp. Soldiers move almost twice as slowly, and cavalry cannot build up speed or deliver a charge in it.", "一片大沼泽。士兵速度几乎减半，骑兵无法加速，也无法冲锋。"], "Бойцов в высокой траве видно только с 15 м, это место для засады. Трава колышется на ветру.": ["Soldiers in tall grass are visible only from 15 m: a place for ambushes. The grass sways in the wind.", "高草中的士兵只能在15米内被发现，是伏击的好地方。草在风中摇曳。"], "Скалы и хребты": ["Rocks and ridges", "岩石与山脊"], "Скалы идут цепочками-хребтами. Они непроходимы, между валунами бывают узкие проходы.": ["Rocks form chains of ridges. They are impassable, though there are narrow gaps between boulders.", "岩石连成山脊，无法通行，巨石之间偶有窄道。"], "Готовые карты появятся позже. Сейчас каждая карта создаётся случайно (одинаково для обеих сторон).": ["Ready-made maps will appear later. For now every map is generated randomly (identical for both sides).", "预制地图将在以后推出。目前每张地图随机生成（对双方相同）。"], "Загрузка…": ["Loading…", "加载中…"], "Открытых комнат пока нет. Создайте свою и поставьте «Открытое» в настройках лобби.": ["No open rooms yet. Create your own and set “Open” in the lobby settings.", "暂时没有公开房间。请创建房间并在房间设置中选择“公开”。"], "<b></b><span class=\"dim\"></span><span></span><span class=\"dim\"></span><button class=\"btn s\">Войти</button>": ["<b></b><span class=\"dim\"></span><span></span><span class=\"dim\"></span><button class=\"btn s\">Join</button>", "<b></b><span class=\"dim\"></span><span></span><span class=\"dim\"></span><button class=\"btn s\">加入</button>"], "Войти": ["Join", "加入"], "Список комнат работает только при подключении к серверу.": ["The room list works only when connected to the server.", "房间列表仅在连接服务器时可用。"], "Мч": ["Sw", "剑"], "То": ["Ax", "斧"], "Кп": ["Sp", "矛"], "Пк": ["Pk", "长"], "Лу": ["Bw", "弓"], "Пл": ["Ja", "标"], "Кн": ["Cv", "骑"], "Щт": ["Sh", "盾"], "Ар": ["Cb", "弩"], "Бс": ["Bz", "狂"], "Жр": ["Pr", "祭"], "КЛ": ["HA", "骑弓"], "За границей карты": ["Outside the map", "地图之外"], "Мост: единственный переход через реку": ["Bridge: the only way across the river", "桥：渡河的唯一通道"], "Брод: движение вдвое медленнее": ["Ford: movement is twice as slow", "浅滩：移动速度减半"], "Река: непроходима, переход по мостам": ["River: impassable, cross by bridges", "河流：无法通行，需走桥"], "Стена: непроходима, закрывает обзор для стрел": ["Wall: impassable, blocks arrows", "墙：无法通行，阻挡箭矢"], "Камни: непроходимы": ["Rocks: impassable", "岩石：无法通行"], "Болото: скорость почти вдвое ниже, конница не разгоняется": ["Swamp: speed almost halved, cavalry cannot build speed", "沼泽：速度几乎减半，骑兵无法加速"], "Высокая трава: бойцов видно только с 15 м": ["Tall grass: soldiers visible only from 15 m", "高草：士兵仅在15米内可见"], "Группа распущена": ["Group disbanded", "编组已解散"], "Группа ": ["Group ", "编组 "], ": клавиша ": [": key ", "：按键 "], "Выберите два отряда или больше": ["Select two or more squads", "请选择两个或更多部队"], " сохранена": [" saved", " 已保存"], "  ·  клавиша ": ["  ·  key ", "  ·  按键 "], "Выбрать всю группу": ["Select the whole group", "选择整个编组"], "Распустить группу": ["Disband the group", "解散编组"], "Мораль: ": ["Morale: ", "士气："], " зал.": [" vol.", " 轮"], "Разгруппировать": ["Ungroup", "取消编组"], "Объединить": ["Group", "编组"], "Расстановка ": ["Deployment ", "布阵 "], "Взятие точки… ": ["Capturing the point… ", "正在占领据点… "], " с": [" s", " 秒"], "Точка нейтральна": ["The point is neutral", "据点为中立"], "Вы держите точку": ["You hold the point", "您控制着据点"], "Враг держит точку": ["The enemy holds the point", "敌人控制着据点"], "Ждём остальных…": ["Waiting for the others…", "等待其他人…"], "Все бойцы противника уничтожены.": ["All enemy soldiers have been destroyed.", "敌方士兵已被全部消灭。"], "Точка захвачена на 100%.": ["The point is 100% captured.", "据点已100%占领。"], "Время вышло, точкой владеет победитель.": ["Time is up; the winner holds the point.", "时间到，胜者控制据点。"], "Время вышло, точка ничья.": ["Time is up; the point is contested.", "时间到，据点无人占领。"], "Обе армии уничтожены.": ["Both armies were destroyed.", "双方军队均被消灭。"], "Ничья": ["Draw", "平局"], "Победа": ["Victory", "胜利"], "Поражение": ["Defeat", "失败"], "Осталось: ваши ": ["Remaining: yours ", "剩余：我方 "], ", противник ": [", enemy ", "，敌方 "], ". Время боя: ": [". Battle time: ", "。战斗时间："], " бегут с поля боя!": [" are fleeing the battlefield!", " 正在逃离战场！"], "Авто-расстановка доступна хосту": ["Auto-deploy is available to the host", "自动布阵仅主机可用"], "Скорость камеры (WASD, край экрана)": ["Camera speed (WASD, screen edge)", "镜头速度（WASD、屏幕边缘）"], "Скорость поворота (Q / E)": ["Rotation speed (Q / E)", "旋转速度（Q / E）"], "Чувствительность колеса (масштаб)": ["Wheel sensitivity (zoom)", "滚轮灵敏度（缩放）"], "Язык": ["Language", "语言"], "меняется в главном меню": ["change it in the main menu", "请在主菜单中更改"], "Музыка": ["Music", "音乐"], "Звуки": ["Sounds", "音效"], "Прокрутка, когда курсор у края экрана": ["Scroll when the cursor is at the screen edge", "光标靠近屏幕边缘时滚动"], "Поменять местами Q и E": ["Swap Q and E", "交换 Q 和 E"], "Сбросить": ["Reset", "重置"], "Браузер не разрешил полный экран. Попробуйте F11": ["The browser denied fullscreen. Try F11", "浏览器未允许全屏，请尝试 F11"], "Сдаться": ["Surrender", "投降"], "Выйти в меню": ["Exit to menu", "退出到菜单"], "Точно сдаться?": ["Really surrender?", "确定投降吗？"], "Вы сдались": ["You surrendered", "您已投降"], "Выйти? Игра закроется для всех": ["Exit? The game will close for everyone", "退出吗？游戏将对所有人关闭"], "Точно выйти?": ["Really exit?", "确定退出吗？"], "Назад отключено в бою. Выйти можно через «Меню»": ["Back is disabled in battle. Leave through “Menu”", "战斗中无法后退，请通过“菜单”退出"], "Не удалось загрузить библиотеку соединения (PeerJS). Проверьте интернет.": ["Could not load the connection library (PeerJS). Check your internet.", "无法加载连接库（PeerJS），请检查网络。"], "Не удалось создать лобби: ": ["Could not create the lobby: ", "无法创建房间："], "Не удалось соединиться. Проверьте код или попросите хоста проверить, что страница открыта.": ["Could not connect. Check the code or ask the host to make sure the page is open.", "无法连接。请检查代码，或请主机确认页面已打开。"], "Лобби с таким кодом не найдено.": ["No lobby found with this code.", "未找到该代码的房间。"], "Ошибка соединения: ": ["Connection error: ", "连接错误："], "Соединение закрыто.": ["Connection closed.", "连接已关闭。"], "Неверный адрес сервера.": ["Invalid server address.", "服务器地址无效。"], "Сервер не отвечает. Если он только что был в простое, подождите минуту и повторите.": ["The server is not responding. If it was idle, wait a minute and try again.", "服务器无响应。如果它刚才处于休眠状态，请等待一分钟后重试。"], "Не удалось подключиться к серверу. Проверьте интернет.": ["Could not connect to the server. Check your internet.", "无法连接服务器，请检查网络。"], "Сервер не ответил.": ["The server did not respond.", "服务器没有响应。"], "Не удалось создать лобби: сервер занят.": ["Could not create the lobby: the server is busy.", "无法创建房间：服务器繁忙。"], "Лобби заполнено.": ["The lobby is full.", "房间已满。"], "Обычный бой": ["Standard battle", "普通战斗"], "База знаний": ["Knowledge base", "知识库"], "Настройки": ["Settings", "设置"], "Ваше имя": ["Your name", "你的名字"], "Создать лобби": ["Create lobby", "创建房间"], "Против ИИ": ["Versus AI", "对战AI"], "Войти по коду": ["Join by code", "输入代码加入"], "Список комнат": ["Room list", "房间列表"], "Назад": ["Back", "返回"], "Настройки лобби": ["Lobby settings", "房间设置"], "Скопировать ссылку": ["Copy link", "复制链接"], "Выйти": ["Leave", "离开"], "Игроки": ["Players", "玩家"], "Сбор армии": ["Army setup", "组建军队"], "Ваша армия": ["Your army", "你的军队"], "Случайная": ["Random", "随机"], "Очистить": ["Clear", "清空"], "Начать бой": ["Start battle", "开始战斗"], "Закрыть": ["Close", "关闭"], "Точка": ["Point", "据点"], "Расставить заново": ["Redeploy", "重新布阵"], "Выбрать все": ["Select all", "全选"], "Стоп": ["Halt", "停止"], "Огонь": ["Fire", "开火"], "Пауза": ["Pause", "暂停"], "Меню": ["Menu", "菜单"], "⛶ Полный экран": ["⛶ Fullscreen", "⛶ 全屏"], "ЛКМ — выбор, рамка (Shift/Ctrl — добавить). ПКМ — идти или атаковать; ПКМ с протяжкой — строй. Жёлтые точки на краях строя — растянуть. WASD — камера, Q/E — поворот, колесо — масштаб. H стоп, F огонь, G группа, Ctrl+цифра — быстрая группа.": ["LMB — select, box select (Shift/Ctrl to add). RMB — move or attack; RMB drag — formation. Yellow dots at the ends of a formation — stretch it. WASD — camera, Q/E — rotate, wheel — zoom. H halt, F fire, G group, Ctrl+digit — quick group.", "左键——选择、框选（Shift/Ctrl 追加）。右键——移动或攻击；右键拖动——布阵。队形两端的黄点——拉伸队形。WASD——镜头，Q/E——旋转，滚轮——缩放。H 停止，F 开火，G 编组，Ctrl+数字——快速编组。"], "Продолжить": ["Resume", "继续"], "Настройки игры": ["Game settings", "游戏设置"], "В меню": ["To menu", "回到菜单"], "Отряды": ["Squads", "部队"], "Карты": ["Maps", "地图"], "Обновить": ["Refresh", "刷新"], "Личные настройки: язык, звук и камера. Они сохраняются в браузере и не влияют на других игроков.": ["Personal settings: language, sound and camera. They are saved in the browser and do not affect other players.", "个人设置：语言、声音和镜头。它们保存在浏览器中，不影响其他玩家。"], "Готово": ["Done", "完成"], "Полный экран": ["Fullscreen", "全屏"], "Главное меню": ["Main menu", "主菜单"], "КОД": ["CODE", "代码"], "Пробел": ["Space", "空格"], "Мечники": ["Swordsmen", "剑士"], "Универсальная пехота. Надёжна в любом бою.": ["Versatile infantry. Reliable in any fight.", "万能步兵，在任何战斗中都很可靠。"], "меч": ["sword", "剑"], "Топорники": ["Axemen", "斧兵"], "Быстрые, но почти без брони. Рубят щиты и латы.": ["Fast but almost unarmored. They hew through shields and plate.", "速度快但几乎没有护甲，能劈开盾牌和板甲。"], "топор": ["axe", "斧"], "Копейщики": ["Spearmen", "矛兵"], "Гасят чардж конницы и держат строй.": ["Stop cavalry charges and hold the line.", "抵挡骑兵冲锋，稳固阵线。"], "копьё": ["spear", "矛"], "Пикинеры": ["Pikemen", "长枪兵"], "Длинные пики в первых рядах, вблизи слабы.": ["Long pikes in the front ranks; weak up close.", "前排持长枪，近身较弱。"], "пика": ["pike", "长枪"], "Лучники": ["Archers", "弓箭手"], "Дальний огонь. Слабы в рукопашной.": ["Ranged fire. Weak in melee.", "远程火力，近战较弱。"], "лук": ["bow", "弓"], "кинжал": ["dagger", "匕首"], "Пельтасты": ["Peltasts", "标枪兵"], "Метают пилумы: ломают щиты и игнорируют броню.": ["Throw pila: break shields and ignore armor.", "投掷重标枪：破盾并无视护甲。"], "пилум": ["pilum", "重标枪"], "Конница": ["Cavalry", "骑兵"], "Разгоняется сама. Ломает строй, но боится копий.": ["Builds speed on its own. Breaks formations but fears spears.", "自行加速，能冲散阵型，但惧怕长矛。"], "копьё всадника": ["cavalry spear", "骑枪"], "Щитоносцы": ["Shieldbearers", "盾卫"], "Медленные, но почти несокрушимые в строю.": ["Slow but nearly unbreakable in formation.", "行动缓慢，但在阵中几乎坚不可摧。"], "Арбалетчики": ["Crossbowmen", "弩手"], "Короче дальность, но болты пробивают броню.": ["Shorter range, but bolts pierce armor.", "射程较短，但弩箭能穿甲。"], "арбалет": ["crossbow", "弩"], "Берсерки": ["Berserkers", "狂战士"], "Без брони, быстры и яростны, не бегут с поля боя. Пугают врагов рядом.": ["Unarmored, fast and furious; never flee the field. They frighten nearby enemies.", "无甲、迅捷而狂暴，绝不逃离战场，会吓退附近的敌人。"], "два боевых топора": ["two battle axes", "双持战斧"], "Жрецы": ["Priests", "祭司"], "Слабо бьют, но поднимают мораль союзников рядом.": ["Weak fighters, but raise the morale of nearby allies.", "战斗力弱，但能提升附近友军士气。"], "посох": ["staff", "法杖"], "Конные лучники": ["Horse archers", "骑射手"], "Стреляют на скаку. Изматывают врага.": ["Shoot on the move. Wear the enemy down.", "边骑边射，消耗敌人。"]};
+const DICT={"Приказ": ["Order", "指令"], "Рамка": ["Box", "框选"], "Режим приказа: касание — идти или атаковать, протяжка — строй": ["Order mode: tap to move or attack, drag for a line", "指令模式：点击移动或攻击，拖动成列"], "Режим рамки: проведите пальцем по отрядам": ["Box mode: swipe over squads", "框选模式：在部队上滑动"], "Режим выбора: касание — выбрать отряд, палец — двигать карту": ["Select mode: tap a squad, drag to pan", "选择模式：点击选部队，拖动移动地图"], "Держать строй": ["Hold formation", "保持阵型"], "Скорость 100% (м/с)": ["Speed at 100% (m/s)", "100%速度（米/秒）"], "Множитель шага": ["Step multiplier", "步幅倍数"], "Радиус бойца (м)": ["Soldier radius (m)", "士兵半径（米）"], "Поворот пехоты (рад/с)": ["Infantry turn rate (rad/s)", "步兵转向（弧度/秒）"], "Поворот конницы (рад/с)": ["Cavalry turn rate (rad/s)", "骑兵转向（弧度/秒）"], "Регенерация: задержка (с)": ["Regeneration: delay (s)", "恢复：延迟（秒）"], "Регенерация: доля HP в секунду": ["Regeneration: HP fraction per second", "恢复：每秒生命比例"], "Регенерация: предел (доля HP)": ["Regeneration: cap (HP fraction)", "恢复：上限（生命比例）"], "Смена оружия (с)": ["Weapon switch (s)", "换武器（秒）"], "Топор: снимает за удар": ["Axe: removed per hit", "斧：每击削减"], "Окружение цели (°, 180–270)": ["Target encirclement (°, 180–270)", "包围目标（度，180–270）"], "Атакующих на одну цель": ["Attackers per target", "每个目标的攻击者数"], "Интервал в шеренге (м)": ["Spacing in rank (m)", "队列间距（米）"], "Интервал между шеренгами (м)": ["Spacing between ranks (m)", "行间距（米）"], "Видимость при тумане (м)": ["Fog sight range (m)", "迷雾视野（米）"], "Видимость в траве (м)": ["Sight range in grass (m)", "草丛视野（米）"], "До контроля точки (с)": ["Time to control point (s)", "控制据点用时（秒）"], "До захвата точки (с)": ["Time to capture point (s)", "占领据点用时（秒）"], "Радиус точки (доля карты)": ["Point radius (map fraction)", "据点半径（地图比例）"], "Радиус точки, минимум (м)": ["Point radius, minimum (m)", "据点最小半径（米）"], "Время расстановки (с)": ["Deployment time (s)", "布阵时间（秒）"], "Зона каждой стороны (% карты)": ["Each side zone (% of map)", "每方区域（地图百分比）"], "Размер отрядов (множитель)": ["Squad size (multiplier)", "部队规模（倍数）"], "Очков на один отряд": ["Points per squad", "每个部队的点数"], "Плотность объектов рельефа": ["Terrain object density", "地形物体密度"], "Минимум ровной местности (доля)": ["Minimum open ground (fraction)", "最小开阔地（比例）"], "Чардж: разгон (%/с)": ["Charge: acceleration (%/s)", "冲锋：加速（%/秒）"], "Чардж: торможение (%/с)": ["Charge: deceleration (%/s)", "冲锋：减速（%/秒）"], "Чардж: от скорости (%)": ["Charge: from speed (%)", "冲锋：起始速度（%）"], "Остановка чарджа копьём (±°)": ["Spear charge stop (±°)", "长矛止冲（±度）"], "1 на 1": ["1 vs 1", "1对1"], "2 на 2": ["2 vs 2", "2对2"], "3 на 3": ["3 vs 3", "3对3"], "Стены": ["Walls", "墙壁"], "Болота": ["Swamps", "沼泽"], "Камни": ["Rocks", "岩石"], "Реки": ["Rivers", "河流"], "Мосты": ["Bridges", "桥梁"], "Высокая трава": ["Tall grass", "高草"], "Неизвестный отряд": ["Unknown squad", "未知部队"], "Тестовые отряды выключены": ["Test squads are disabled", "测试部队已关闭"], "Нужно ровно ": ["Exactly ", "需要正好 "], " отрядов (сейчас ": [" squads needed (now ", " 个部队（当前 "], "Превышен бюджет очков: ": ["Point budget exceeded: ", "超出点数预算："], " из ": [" of ", " / "], "Одинаковых отрядов не больше ": ["No more than this many identical squads: ", "相同部队最多 "], "Версия баланса ": ["Balance version ", "平衡版本 "], " · сборка ": [" · build ", " · 构建 "], " · режим разработчика": [" · developer mode", " · 开发者模式"], "Введите имя и нажмите «Войти по коду»": ["Enter a name and press “Join by code”", "输入名字并点击“输入代码加入”"], "Профиль": ["Profile", "档案"], "Рейтинговый бой": ["Ranked battle", "排位战"], "Друзья": ["Friends", "好友"], ": раздел появится позже": [": section coming later", "：该部分稍后推出"], "Полководец": ["Commander", "指挥官"], "Создаём лобби…": ["Creating lobby…", "正在创建房间…"], "Связь с сервером потеряна": ["Connection to server lost", "与服务器的连接已断开"], "Связь с сервером потеряна.": ["Connection to server lost.", "与服务器的连接已断开。"], "Введите код лобби": ["Enter lobby code", "请输入房间代码"], "Подключаемся…": ["Connecting…", "正在连接…"], "Связь с хостом потеряна": ["Connection to host lost", "与主机的连接已断开"], "Хост закрыл лобби.": ["The host closed the lobby.", "主机已关闭房间。"], "Ждём ответа хоста…": ["Waiting for the host…", "等待主机响应…"], "Скопировано": ["Copied", "已复制"], "Скопируйте:": ["Copy this:", "请复制："], "Бой уже идёт": ["The battle is already in progress", "战斗已经开始"], "Версия игры отличается (у вас ": ["Game version differs (yours: ", "游戏版本不一致（您的版本："], ", у хоста ": [", host: ", "，主机版本："], "). Обновите страницу: Ctrl+F5.": ["). Refresh the page: Ctrl+F5.", "）。请刷新页面：Ctrl+F5。"], "В лобби нет свободных мест": ["No free slots in the lobby", "房间已无空位"], "Игрок": ["Player", "玩家"], " отключился, его отряды ведёт бот": [" disconnected, a bot controls their squads", " 已断线，其部队由机器人接管"], "Лобби стало меньше": ["The lobby became smaller", "房间人数减少"], "Отказано": ["Refused", "已拒绝"], "Тренировка против ИИ": ["Training against AI", "对战AI训练"], "Лобби · ": ["Lobby · ", "房间 · "], "открытое": ["open", "公开"], "закрытое": ["closed", "私密"], "Скажите друзьям код, они вводят его в меню (у файла нет ссылки). Лучше выложить игру на хостинг.": ["Tell your friends the code; they enter it in the menu (a file has no link). It is better to host the game online.", "把代码告诉朋友，他们在菜单中输入（文件没有链接）。最好把游戏放到网上。"], "Отправьте друзьям ссылку или код": ["Send your friends the link or the code", "把链接或代码发给朋友"], "Синие": ["Blue", "蓝方"], "Красные": ["Red", "红方"], " · хост": [" · host", " · 主机"], "армия не готова": ["army not ready", "军队未就绪"], "хост": ["host", "主机"], "готов": ["ready", "已准备"], "не готов": ["not ready", "未准备"], "свободно (будет бот)": ["free (a bot will join)", "空位（将由机器人填补）"], "свободно": ["free", "空位"], "Остальные места займёт бот.": ["Bots will take the remaining slots.", "其余位置由机器人填补。"], "Нажмите на свободное место, чтобы пересесть.": ["Click a free slot to switch seats.", "点击空位以换位。"], "Не готов": ["Not ready", "未准备"], "Готов": ["Ready", "准备"], "Соберите свою армию": ["Build your army", "组建你的军队"], "Ждём готовности игроков": ["Waiting for players to be ready", "等待玩家准备"], "Есть свободные места, а боты выключены": ["There are free slots but bots are off", "有空位但机器人已关闭"], "Режим": ["Mode", "模式"], " отрядов)": [" squads)", " 个部队）"], "Ограничение армии": ["Army limit", "军队限制"], "Очки (стоимость)": ["Points (cost)", "点数（费用）"], "Лимит одинаковых": ["Identical-squad limit", "相同部队上限"], "Без ограничений": ["No limits", "无限制"], "Размер карты": ["Map size", "地图大小"], " м": [" m", " 米"], "Рельеф": ["Terrain", "地形"], "Процедурная генерация": ["Procedural generation", "程序生成"], "Чистое поле": ["Open field", "空旷平原"], "Время боя (мин)": ["Battle time (min)", "战斗时间（分钟）"], "Туман войны": ["Fog of war", "战争迷雾"], "Мораль": ["Morale", "士气"], "Тестовые юниты": ["Test units", "测试单位"], "Боты на свободные места": ["Bots on free slots", "空位由机器人填补"], "Лобби": ["Lobby", "房间"], "Закрытое (по коду)": ["Closed (by code)", "私密（凭代码）"], "Открытое (в списке комнат)": ["Open (in the room list)", "公开（显示在房间列表）"], "Объекты генерации: уберите галочку у того, что мешает или работает плохо.": ["Generated objects: untick anything that gets in the way or works badly.", "生成物体：取消勾选碍事或效果不好的项目。"], "Мелкие настройки": ["Minor settings", "细节设置"], "Лимит одинаковых отрядов": ["Identical-squad limit", "相同部队上限"], "Загрузить файл баланса…": ["Load balance file…", "载入平衡文件…"], "Сбросить на стандартные": ["Reset to defaults", "恢复默认"], "нет units/global": ["no units/global", "缺少 units/global"], "Баланс загружен: ": ["Balance loaded: ", "平衡已载入："], "Не удалось прочитать баланс: ": ["Could not read balance: ", "无法读取平衡文件："], "Атака": ["Attack", "攻击"], "Защита": ["Defense", "防御"], "Скорость": ["Speed", "速度"], "Дальность": ["Range", "射程"], "Здоровье": ["Health", "生命"], " · боезапас ": [" · ammo ", " · 弹药 "], " залпов": [" volleys", " 轮齐射"], "не бегут": ["never rout", "永不溃逃"], "очень высокая": ["very high", "极高"], "высокая": ["high", "高"], "средняя": ["medium", "中"], "ниже средней": ["below average", "偏低"], "низкая": ["low", "低"], "до ": ["up to ", "至 "], "вплотную": ["melee", "近身"], "доп.: ": ["alt: ", "副："], "</b><span>урон ": ["</b><span>damage ", "</b><span>伤害 "], " с · ": [" s · ", " 秒 · "], "Бойцов в отряде": ["Soldiers in squad", "部队人数"], "Здоровье бойца": ["Soldier health", "士兵生命"], "Броня": ["Armor", "护甲"], "Щит": ["Shield", "盾牌"], " (сектор ": [" (arc ", " （扇区 "], "нет": ["none", "无"], "Шеренг": ["Ranks", "行数"], "<div class=\"ab\"><b>Умения:</b> ": ["<div class=\"ab\"><b>Abilities:</b> ", "<div class=\"ab\"><b>技能：</b> "], " отрядов. ": [" squads. ", " 个部队。"], "Лимит очков общий для всех.": ["The point limit is shared by everyone.", "点数上限对所有人通用。"], "Не более ": ["No more than ", "最多 "], " одинаковых отрядов.": [" identical squads.", " 个相同部队。"], "Без ограничений по очкам.": ["No point limit.", "无点数限制。"], "Очки: <b>": ["Points: <b>", "点数：<b>"], "Отрядов: <b>": ["Squads: <b>", "部队：<b>"], "тест": ["test", "测试"], "<div class=\"u2h\"><img class=\"ico\" alt=\"\"><span class=\"u2t\"><span class=\"u2n\"></span><span class=\"u2c\"></span></span></div><div class=\"u2s\"></div><div class=\"u2b\"><button class=\"btn s mo\">Подробнее</button><span class=\"cnt\"><button class=\"mi\">−</button><b></b><button class=\"pl\">+</button></span></div><div class=\"det\"></div>": ["<div class=\"u2h\"><img class=\"ico\" alt=\"\"><span class=\"u2t\"><span class=\"u2n\"></span><span class=\"u2c\"></span></span></div><div class=\"u2s\"></div><div class=\"u2b\"><button class=\"btn s mo\">Details</button><span class=\"cnt\"><button class=\"mi\">−</button><b></b><button class=\"pl\">+</button></span></div><div class=\"det\"></div>", "<div class=\"u2h\"><img class=\"ico\" alt=\"\"><span class=\"u2t\"><span class=\"u2n\"></span><span class=\"u2c\"></span></span></div><div class=\"u2s\"></div><div class=\"u2b\"><button class=\"btn s mo\">详情</button><span class=\"cnt\"><button class=\"mi\">−</button><b></b><button class=\"pl\">+</button></span></div><div class=\"det\"></div>"], " очков · ": [" pts · ", " 点 · "], " бойцов": [" soldiers", " 名士兵"], "Свернуть": ["Collapse", "收起"], "Подробнее": ["Details", "详情"], "Убрать отряд": ["Remove squad", "移除部队"], ". свободно": [". free", "。空位"], "Армия готова": ["Army ready", "军队已就绪"], "Останавливает чардж спереди": ["Stops frontal charges", "正面止冲"], "Чардж по скорости": ["Speed-based charge", "按速度冲锋"], "«Стена»: стоя 2 с, +30 к щиту": ["“Wall”: standing 2 s, +30 shield", "“盾墙”：站立2秒，盾牌+30"], "«Ярость»: ниже 50% HP быстрее бьёт, не лечится": ["“Rage”: below 50% HP strikes faster, no healing", "“狂怒”：生命低于50%时攻速更快，无法恢复"], "Поднимает мораль союзников рядом (−45% давления)": ["Raises morale of nearby allies (−45% pressure)", "提升附近友军士气（压力−45%）"], "Пугающая аура: враги рядом теряют мораль": ["Fear aura: nearby enemies lose morale", "恐惧光环：附近敌人士气下降"], "Стреляет на скаку": ["Shoots on the move", "可骑射"], "Снимает 20 щита/брони за удар": ["Removes 20 shield/armor per hit", "每击削减20盾牌/护甲"], "Игнорирует броню, ломает щит": ["Ignores armor, breaks shields", "无视护甲，破坏盾牌"], "Пробивает 50% брони": ["Pierces 50% of armor", "穿透50%护甲"], "Бот ": ["Bot ", "机器人 "], " очков": [" points", " 点"], "Зоны и точка": ["Zones and the point", "区域与据点"], "Карта делится на три полосы: у каждой стороны своя зона расстановки (по ": ["The map is split into three strips: each side has its own deployment zone (", "地图分为三条带：每方有自己的布阵区（各占 "], "% карты), между ними нейтральная полоса. В центре точка: удержите её до полного захвата или уничтожьте армию противника.": ["% of the map each), with a neutral strip between them. In the centre is a point: hold it until full capture or destroy the enemy army.", "% 的地图），中间是中立带。中央有一个据点：守住它直到完全占领，或消灭敌军。"], "Река и мосты": ["River and bridges", "河流与桥梁"], "Одна извилистая река пересекает нейтральную полосу. Пройти её можно только по мостам: на мостах строй сжимается, и именно там идут самые тяжёлые бои. Без мостов река превращается в брод: движение вдвое медленнее.": ["One winding river crosses the neutral strip. It can only be crossed by bridges: formations squeeze together on bridges, and that is where the heaviest fighting happens. Away from bridges the river is a ford: movement is twice as slow.", "一条蜿蜒的河流穿过中立带。只能通过桥梁渡河：桥上队形收窄，最激烈的战斗就发生在那里。没有桥的地方是浅滩：移动速度减半。"], "Болото": ["Swamp", "沼泽"], "Одно большое болото. Скорость бойцов почти вдвое ниже, конница в нём не может разогнаться и не наносит удар чарджем.": ["One large swamp. Soldiers move almost twice as slowly, and cavalry cannot build up speed or deliver a charge in it.", "一片大沼泽。士兵速度几乎减半，骑兵无法加速，也无法冲锋。"], "Бойцов в высокой траве видно только с 15 м, это место для засады. Трава колышется на ветру.": ["Soldiers in tall grass are visible only from 15 m: a place for ambushes. The grass sways in the wind.", "高草中的士兵只能在15米内被发现，是伏击的好地方。草在风中摇曳。"], "Скалы и хребты": ["Rocks and ridges", "岩石与山脊"], "Скалы идут цепочками-хребтами. Они непроходимы, между валунами бывают узкие проходы.": ["Rocks form chains of ridges. They are impassable, though there are narrow gaps between boulders.", "岩石连成山脊，无法通行，巨石之间偶有窄道。"], "Готовые карты появятся позже. Сейчас каждая карта создаётся случайно (одинаково для обеих сторон).": ["Ready-made maps will appear later. For now every map is generated randomly (identical for both sides).", "预制地图将在以后推出。目前每张地图随机生成（对双方相同）。"], "Загрузка…": ["Loading…", "加载中…"], "Открытых комнат пока нет. Создайте свою и поставьте «Открытое» в настройках лобби.": ["No open rooms yet. Create your own and set “Open” in the lobby settings.", "暂时没有公开房间。请创建房间并在房间设置中选择“公开”。"], "<b></b><span class=\"dim\"></span><span></span><span class=\"dim\"></span><button class=\"btn s\">Войти</button>": ["<b></b><span class=\"dim\"></span><span></span><span class=\"dim\"></span><button class=\"btn s\">Join</button>", "<b></b><span class=\"dim\"></span><span></span><span class=\"dim\"></span><button class=\"btn s\">加入</button>"], "Войти": ["Join", "加入"], "Список комнат работает только при подключении к серверу.": ["The room list works only when connected to the server.", "房间列表仅在连接服务器时可用。"], "Мч": ["Sw", "剑"], "То": ["Ax", "斧"], "Кп": ["Sp", "矛"], "Пк": ["Pk", "长"], "Лу": ["Bw", "弓"], "Пл": ["Ja", "标"], "Кн": ["Cv", "骑"], "Щт": ["Sh", "盾"], "Ар": ["Cb", "弩"], "Бс": ["Bz", "狂"], "Жр": ["Pr", "祭"], "КЛ": ["HA", "骑弓"], "За границей карты": ["Outside the map", "地图之外"], "Мост: единственный переход через реку": ["Bridge: the only way across the river", "桥：渡河的唯一通道"], "Брод: движение вдвое медленнее": ["Ford: movement is twice as slow", "浅滩：移动速度减半"], "Река: непроходима, переход по мостам": ["River: impassable, cross by bridges", "河流：无法通行，需走桥"], "Стена: непроходима, закрывает обзор для стрел": ["Wall: impassable, blocks arrows", "墙：无法通行，阻挡箭矢"], "Камни: непроходимы": ["Rocks: impassable", "岩石：无法通行"], "Болото: скорость почти вдвое ниже, конница не разгоняется": ["Swamp: speed almost halved, cavalry cannot build speed", "沼泽：速度几乎减半，骑兵无法加速"], "Высокая трава: бойцов видно только с 15 м": ["Tall grass: soldiers visible only from 15 m", "高草：士兵仅在15米内可见"], "Группа распущена": ["Group disbanded", "编组已解散"], "Группа ": ["Group ", "编组 "], ": клавиша ": [": key ", "：按键 "], "Выберите два отряда или больше": ["Select two or more squads", "请选择两个或更多部队"], " сохранена": [" saved", " 已保存"], "  ·  клавиша ": ["  ·  key ", "  ·  按键 "], "Выбрать всю группу": ["Select the whole group", "选择整个编组"], "Распустить группу": ["Disband the group", "解散编组"], "Мораль: ": ["Morale: ", "士气："], " зал.": [" vol.", " 轮"], "Разгруппировать": ["Ungroup", "取消编组"], "Объединить": ["Group", "编组"], "Расстановка ": ["Deployment ", "布阵 "], "Взятие точки… ": ["Capturing the point… ", "正在占领据点… "], " с": [" s", " 秒"], "Точка нейтральна": ["The point is neutral", "据点为中立"], "Вы держите точку": ["You hold the point", "您控制着据点"], "Враг держит точку": ["The enemy holds the point", "敌人控制着据点"], "Ждём остальных…": ["Waiting for the others…", "等待其他人…"], "Все бойцы противника уничтожены.": ["All enemy soldiers have been destroyed.", "敌方士兵已被全部消灭。"], "Точка захвачена на 100%.": ["The point is 100% captured.", "据点已100%占领。"], "Время вышло, точкой владеет победитель.": ["Time is up; the winner holds the point.", "时间到，胜者控制据点。"], "Время вышло, точка ничья.": ["Time is up; the point is contested.", "时间到，据点无人占领。"], "Обе армии уничтожены.": ["Both armies were destroyed.", "双方军队均被消灭。"], "Ничья": ["Draw", "平局"], "Победа": ["Victory", "胜利"], "Поражение": ["Defeat", "失败"], "Осталось: ваши ": ["Remaining: yours ", "剩余：我方 "], ", противник ": [", enemy ", "，敌方 "], ". Время боя: ": [". Battle time: ", "。战斗时间："], " бегут с поля боя!": [" are fleeing the battlefield!", " 正在逃离战场！"], "Авто-расстановка доступна хосту": ["Auto-deploy is available to the host", "自动布阵仅主机可用"], "Скорость камеры (WASD, край экрана)": ["Camera speed (WASD, screen edge)", "镜头速度（WASD、屏幕边缘）"], "Скорость поворота (Q / E)": ["Rotation speed (Q / E)", "旋转速度（Q / E）"], "Чувствительность колеса (масштаб)": ["Wheel sensitivity (zoom)", "滚轮灵敏度（缩放）"], "Язык": ["Language", "语言"], "меняется в главном меню": ["change it in the main menu", "请在主菜单中更改"], "Музыка": ["Music", "音乐"], "Звуки": ["Sounds", "音效"], "Прокрутка, когда курсор у края экрана": ["Scroll when the cursor is at the screen edge", "光标靠近屏幕边缘时滚动"], "Поменять местами Q и E": ["Swap Q and E", "交换 Q 和 E"], "Сбросить": ["Reset", "重置"], "Браузер не разрешил полный экран. Попробуйте F11": ["The browser denied fullscreen. Try F11", "浏览器未允许全屏，请尝试 F11"], "Сдаться": ["Surrender", "投降"], "Выйти в меню": ["Exit to menu", "退出到菜单"], "Точно сдаться?": ["Really surrender?", "确定投降吗？"], "Вы сдались": ["You surrendered", "您已投降"], "Выйти? Игра закроется для всех": ["Exit? The game will close for everyone", "退出吗？游戏将对所有人关闭"], "Точно выйти?": ["Really exit?", "确定退出吗？"], "Назад отключено в бою. Выйти можно через «Меню»": ["Back is disabled in battle. Leave through “Menu”", "战斗中无法后退，请通过“菜单”退出"], "Не удалось загрузить библиотеку соединения (PeerJS). Проверьте интернет.": ["Could not load the connection library (PeerJS). Check your internet.", "无法加载连接库（PeerJS），请检查网络。"], "Не удалось создать лобби: ": ["Could not create the lobby: ", "无法创建房间："], "Не удалось соединиться. Проверьте код или попросите хоста проверить, что страница открыта.": ["Could not connect. Check the code or ask the host to make sure the page is open.", "无法连接。请检查代码，或请主机确认页面已打开。"], "Лобби с таким кодом не найдено.": ["No lobby found with this code.", "未找到该代码的房间。"], "Ошибка соединения: ": ["Connection error: ", "连接错误："], "Соединение закрыто.": ["Connection closed.", "连接已关闭。"], "Неверный адрес сервера.": ["Invalid server address.", "服务器地址无效。"], "Сервер не отвечает. Если он только что был в простое, подождите минуту и повторите.": ["The server is not responding. If it was idle, wait a minute and try again.", "服务器无响应。如果它刚才处于休眠状态，请等待一分钟后重试。"], "Не удалось подключиться к серверу. Проверьте интернет.": ["Could not connect to the server. Check your internet.", "无法连接服务器，请检查网络。"], "Сервер не ответил.": ["The server did not respond.", "服务器没有响应。"], "Не удалось создать лобби: сервер занят.": ["Could not create the lobby: the server is busy.", "无法创建房间：服务器繁忙。"], "Лобби заполнено.": ["The lobby is full.", "房间已满。"], "Обычный бой": ["Standard battle", "普通战斗"], "База знаний": ["Knowledge base", "知识库"], "Настройки": ["Settings", "设置"], "Ваше имя": ["Your name", "你的名字"], "Создать лобби": ["Create lobby", "创建房间"], "Против ИИ": ["Versus AI", "对战AI"], "Войти по коду": ["Join by code", "输入代码加入"], "Список комнат": ["Room list", "房间列表"], "Назад": ["Back", "返回"], "Настройки лобби": ["Lobby settings", "房间设置"], "Скопировать ссылку": ["Copy link", "复制链接"], "Выйти": ["Leave", "离开"], "Игроки": ["Players", "玩家"], "Сбор армии": ["Army setup", "组建军队"], "Ваша армия": ["Your army", "你的军队"], "Случайная": ["Random", "随机"], "Очистить": ["Clear", "清空"], "Начать бой": ["Start battle", "开始战斗"], "Закрыть": ["Close", "关闭"], "Точка": ["Point", "据点"], "Расставить заново": ["Redeploy", "重新布阵"], "Выбрать все": ["Select all", "全选"], "Стоп": ["Halt", "停止"], "Огонь": ["Fire", "开火"], "Пауза": ["Pause", "暂停"], "Меню": ["Menu", "菜单"], "⛶ Полный экран": ["⛶ Fullscreen", "⛶ 全屏"], "ЛКМ — выбор, рамка (Shift/Ctrl — добавить). ПКМ — идти или атаковать; ПКМ с протяжкой — строй. Жёлтые точки на краях строя — растянуть. WASD — камера, Q/E — поворот, колесо — масштаб. H стоп, F огонь, G группа, Ctrl+цифра — быстрая группа.": ["LMB — select, box select (Shift/Ctrl to add). RMB — move or attack; RMB drag — formation. Yellow dots at the ends of a formation — stretch it. WASD — camera, Q/E — rotate, wheel — zoom. H halt, F fire, G group, Ctrl+digit — quick group.", "左键——选择、框选（Shift/Ctrl 追加）。右键——移动或攻击；右键拖动——布阵。队形两端的黄点——拉伸队形。WASD——镜头，Q/E——旋转，滚轮——缩放。H 停止，F 开火，G 编组，Ctrl+数字——快速编组。"], "Продолжить": ["Resume", "继续"], "Настройки игры": ["Game settings", "游戏设置"], "В меню": ["To menu", "回到菜单"], "Отряды": ["Squads", "部队"], "Карты": ["Maps", "地图"], "Обновить": ["Refresh", "刷新"], "Личные настройки: язык, звук и камера. Они сохраняются в браузере и не влияют на других игроков.": ["Personal settings: language, sound and camera. They are saved in the browser and do not affect other players.", "个人设置：语言、声音和镜头。它们保存在浏览器中，不影响其他玩家。"], "Готово": ["Done", "完成"], "Полный экран": ["Fullscreen", "全屏"], "Главное меню": ["Main menu", "主菜单"], "КОД": ["CODE", "代码"], "Пробел": ["Space", "空格"], "Мечники": ["Swordsmen", "剑士"], "Универсальная пехота. Надёжна в любом бою.": ["Versatile infantry. Reliable in any fight.", "万能步兵，在任何战斗中都很可靠。"], "меч": ["sword", "剑"], "Топорники": ["Axemen", "斧兵"], "Быстрые, но почти без брони. Рубят щиты и латы.": ["Fast but almost unarmored. They hew through shields and plate.", "速度快但几乎没有护甲，能劈开盾牌和板甲。"], "топор": ["axe", "斧"], "Копейщики": ["Spearmen", "矛兵"], "Гасят чардж конницы и держат строй.": ["Stop cavalry charges and hold the line.", "抵挡骑兵冲锋，稳固阵线。"], "копьё": ["spear", "矛"], "Пикинеры": ["Pikemen", "长枪兵"], "Длинные пики в первых рядах, вблизи слабы.": ["Long pikes in the front ranks; weak up close.", "前排持长枪，近身较弱。"], "пика": ["pike", "长枪"], "Лучники": ["Archers", "弓箭手"], "Дальний огонь. Слабы в рукопашной.": ["Ranged fire. Weak in melee.", "远程火力，近战较弱。"], "лук": ["bow", "弓"], "кинжал": ["dagger", "匕首"], "Пельтасты": ["Peltasts", "标枪兵"], "Метают пилумы: ломают щиты и игнорируют броню.": ["Throw pila: break shields and ignore armor.", "投掷重标枪：破盾并无视护甲。"], "пилум": ["pilum", "重标枪"], "Конница": ["Cavalry", "骑兵"], "Разгоняется сама. Ломает строй, но боится копий.": ["Builds speed on its own. Breaks formations but fears spears.", "自行加速，能冲散阵型，但惧怕长矛。"], "копьё всадника": ["cavalry spear", "骑枪"], "Щитоносцы": ["Shieldbearers", "盾卫"], "Медленные, но почти несокрушимые в строю.": ["Slow but nearly unbreakable in formation.", "行动缓慢，但在阵中几乎坚不可摧。"], "Арбалетчики": ["Crossbowmen", "弩手"], "Короче дальность, но болты пробивают броню.": ["Shorter range, but bolts pierce armor.", "射程较短，但弩箭能穿甲。"], "арбалет": ["crossbow", "弩"], "Берсерки": ["Berserkers", "狂战士"], "Без брони, быстры и яростны, не бегут с поля боя. Пугают врагов рядом.": ["Unarmored, fast and furious; never flee the field. They frighten nearby enemies.", "无甲、迅捷而狂暴，绝不逃离战场，会吓退附近的敌人。"], "два боевых топора": ["two battle axes", "双持战斧"], "Жрецы": ["Priests", "祭司"], "Слабо бьют, но поднимают мораль союзников рядом.": ["Weak fighters, but raise the morale of nearby allies.", "战斗力弱，但能提升附近友军士气。"], "посох": ["staff", "法杖"], "Конные лучники": ["Horse archers", "骑射手"], "Стреляют на скаку. Изматывают врага.": ["Shoot on the move. Wear the enemy down.", "边骑边射，消耗敌人。"], "Вход": ["Sign in", "登录"], "Регистрация": ["Register", "注册"], "Ник": ["Nickname", "昵称"], "Пароль": ["Password", "密码"], "Повторите пароль": ["Repeat password", "重复密码"], "Создать аккаунт": ["Create account", "创建账号"], "Ваш ник": ["Your nickname", "你的昵称"], "Ваш ID": ["Your ID", "你的ID"], "Копировать": ["Copy", "复制"], "Друзья найдут вас по нику или по этому ID.": ["Friends can find you by nickname or by this ID.", "好友可以通过昵称或此ID找到你。"], "Выйти из аккаунта": ["Sign out", "退出账号"], "Найти": ["Search", "搜索"], "Выберите друга, чтобы написать ему.": ["Pick a friend to write to.", "选择一位好友开始聊天。"], "Удалить из друзей": ["Remove friend", "删除好友"], "Точно удалить?": ["Really remove?", "确定删除？"], "Отправить": ["Send", "发送"], "Ник или ID": ["Nickname or ID", "昵称或ID"], "Сообщение": ["Message", "消息"], "Ник: 3–16 символов — буквы, цифры, пробел, «_» или «-»": ["Nickname: 3–16 characters — letters, digits, space, “_” or “-”", "昵称：3–16个字符，可用字母、数字、空格、“_”或“-”"], "Пароль: от 6 до 64 символов": ["Password: 6 to 64 characters", "密码：6到64个字符"], "Этот ник уже занят": ["This nickname is already taken", "该昵称已被占用"], "Неверный ник или пароль": ["Wrong nickname or password", "昵称或密码错误"], "Слишком много попыток. Подождите несколько минут": ["Too many attempts. Wait a few minutes", "尝试次数过多，请等几分钟"], "Ошибка сервера, попробуйте позже": ["Server error, try again later", "服务器错误，请稍后再试"], "Сервер не отвечает. Подождите минуту и повторите": ["The server is not responding. Wait a minute and try again", "服务器无响应，请等一分钟后重试"], "Соединение закрыто": ["Connection closed", "连接已关闭"], "Аккаунты работают через сервер связи. Адрес сервера не задан": ["Accounts work through the connection server. No server address is set", "账号功能需要连接服务器，但未设置服务器地址"], "Сессия устарела, войдите заново": ["Session expired, sign in again", "登录已过期，请重新登录"], "Не удалось подключиться к серверу": ["Could not connect to the server", "无法连接服务器"], "в сети": ["online", "在线"], "не в сети": ["offline", "离线"], "нет соединения с сервером, пробуем снова…": ["no connection to the server, retrying…", "与服务器断开，正在重试…"], "Восстановить пароль нельзя: на почту ничего не привязывается. Запомните его.": ["The password cannot be recovered: no e-mail is attached. Remember it.", "密码无法找回：账号未绑定邮箱，请牢记密码。"], "Пароли не совпадают": ["Passwords do not match", "两次密码不一致"], "Заявки в друзья": ["Friend requests", "好友申请"], "Принять": ["Accept", "接受"], "Отклонить": ["Decline", "拒绝"], "Отменить": ["Cancel", "取消"], "Пока никого. Найдите игрока по нику или ID.": ["Nobody yet. Find a player by nickname or ID.", "暂无好友。通过昵称或ID查找玩家。"], "Отправленные заявки": ["Sent requests", "已发送的申请"], "Никого не найдено": ["Nobody found", "未找到玩家"], "Добавить": ["Add", "添加"], "Заявка отправлена": ["Request sent", "申请已发送"], "в друзьях": ["friends", "已是好友"], "заявка отправлена": ["request sent", "申请已发送"], "это вы": ["this is you", "这是你"], "Войдите или создайте аккаунт, чтобы пользоваться друзьями.": ["Sign in or create an account to use friends.", "请登录或创建账号以使用好友功能。"], "Возвращаемся в своё лобби…": ["Returning to your lobby…", "正在返回你的大厅…"], "Ваше лобби уже закрыто.": ["Your lobby is already closed.", "你的大厅已关闭。"], "Хост переподключается…": ["The host is reconnecting…", "房主正在重新连接…"]};
 let lang='ru'; try{ const s=localStorage.getItem('tc-lang'); if(s==='en'||s==='zh'||s==='ru')lang=s; }catch(e){}
 const IDX={en:0,zh:1};
 function t(s){ if(lang==='ru'||typeof s!=='string')return s; const e=DICT[s]; return e?e[IDX[lang]]:s; }
@@ -929,10 +1101,10 @@ function waitMsg(ws,types,ms){
     ws.addEventListener('message',h); ws.addEventListener('close',c); });
 }
 function WsHost(){ this.ws=null; this.conns=new Map(); this.onMsg=null; this.onLeave=null; this.onClose=null; this.last=new Map(); this.url=serverURL(); }
-WsHost.prototype.start=async function(){
-  const ws=await openWS(this.url); this.ws=ws; ws.send(JSON.stringify({t:'host'}));
+WsHost.prototype.start=async function(resumeCode){
+  const ws=await openWS(this.url); this.ws=ws; ws.send(JSON.stringify({t:'host',token:this.token||'',code:resumeCode||undefined}));
   const r=await waitMsg(ws,['hosted','err']).catch(e=>{try{ws.close();}catch(_){} throw e;});
-  if(r.t!=='hosted'){ try{ws.close();}catch(_){} throw new Error(T('Не удалось создать лобби: сервер занят.')); }
+  if(r.t!=='hosted'){ try{ws.close();}catch(_){} const er=new Error(r.e==='gone'?'gone':T('Не удалось создать лобби: сервер занят.')); er.gone=r.e==='gone'; throw er; }
   this.code=r.code;
   const gone=id=>{ if(this.conns.delete(id)){this.last.delete(id);this.onLeave&&this.onLeave(id);} };
   ws.onmessage=ev=>{ if(typeof ev.data!=='string')return; let m; try{m=JSON.parse(ev.data);}catch(e){return;}
@@ -965,6 +1137,7 @@ WsGuest.prototype.connect=async function(code,hello){
 WsGuest.prototype.send=function(m){ const ws=this.ws; if(ws&&ws.readyState===1){ try{ws.send(JSON.stringify(m));}catch(e){} } };
 WsGuest.prototype.close=function(){ clearInterval(this.hb); try{this.hw&&this.hw.terminate();}catch(e){} try{this.ws&&(this.ws.onclose=null,this.ws.close());}catch(e){} };
 async function listRooms(){ const url=serverURL(); if(!url)throw new Error('no-server'); const ws=await openWS(url,40000); ws.send(JSON.stringify({t:'list'})); try{ const r=await waitMsg(ws,['rooms'],20000); return r.list||[]; } finally{ try{ws.close();}catch(e){} } }
+PB.serverURL=serverURL;
 function Host(){ return serverURL()?new WsHost():new PeerHost(); }
 function Guest(){ return serverURL()?new WsGuest():new PeerGuest(); }
 
@@ -981,7 +1154,7 @@ function packSnap(sim,team){
     dv.setUint8(o+7,s.gone?255:Math.min(250,Math.round(s.sp/2)));
     { const ag=sim.t-s.lastAtk; dv.setUint8(o+8,ag>=2.5?255:Math.max(0,Math.round(ag*100))); }
   }
-  const q=[]; for(const sq of sim.squads){ if(sq.team!==team)continue; const k=sq.order.k; q.push([sq.id,k==='move'?1:k==='attack'?2:0,+sq.cx.toFixed(1),+sq.cy.toFixed(1),+sq.face.toFixed(3),sq.width,sq.run?1:0,sq.fire?1:0,sq.order.target==null?-1:sq.order.target,Math.round(sq.mor),sq.routed?1:0]); }
+  const q=[]; for(const sq of sim.squads){ if(sq.team!==team)continue; const k=sq.order.k; q.push([sq.id,k==='move'?1:k==='attack'?2:0,+sq.cx.toFixed(1),+sq.cy.toFixed(1),+sq.face.toFixed(3),sq.width,sq.run?1:0,sq.fire?1:0,sq.order.target==null?-1:sq.order.target,Math.round(sq.mor),sq.routed?1:0,sq.hf?1:0]); }
   const ev=[]; for(const e of (sim.evbuf||[])){ if(e.e==='s'){ if(!fog||e.tm===team)ev.push([1,+e.x1.toFixed(1),+e.y1.toFixed(1),+e.x2.toFixed(1),+e.y2.toFixed(1),e.k]); }
     else if(e.e==='h'||e.e==='d'){ if(!fog||vis[e.id])ev.push([e.e==='h'?2:3,+e.x.toFixed(1),+e.y.toFixed(1),e.k||0]); }
     else if(e.e==='r'){ const rq=sim.squads[e.sq]; if(rq&&rq.team===team)ev.push([4,e.sq]); } }
@@ -999,7 +1172,7 @@ function applySnap(sim,m,now){
     s.odo=(s.odo||0)+Math.hypot(s.x-s.px,s.y-s.py); { const a8=dv.getUint8(o+8); s.lastAtk=a8===255?-99:m.tm-a8/100; }
   }
   sim.t=m.tm; sim.phase=m.ph; sim.phaseT=m.pT; sim.pt=m.pt; sim.winner=m.w; sim.reason=m.r; sim.over=m.ph==='over';
-  for(const o of m.q){ const sq=sim.squads[o[0]]; if(!sq)continue; sq.order={k:o[1]===1?'move':o[1]===2?'attack':'hold',target:o[8]}; sq.cx=o[2];sq.cy=o[3];sq.face=o[4];sq.width=o[5];sq.run=!!o[6];sq.fire=!!o[7]; sq.mor=o[9]==null?100:o[9]; sq.routed=!!o[10]; }
+  for(const o of m.q){ const sq=sim.squads[o[0]]; if(!sq)continue; sq.order={k:o[1]===1?'move':o[1]===2?'attack':'hold',target:o[8]}; sq.cx=o[2];sq.cy=o[3];sq.face=o[4];sq.width=o[5];sq.run=!!o[6];sq.fire=!!o[7]; sq.mor=o[9]==null?100:o[9]; sq.routed=!!o[10]; sq.hf=!!o[11]; }
   m.pl.forEach((p,i)=>{ if(sim.players[i]){sim.players[i].ready=!!p[0];sim.players[i].gone=!!p[1];} });
   for(const sq of sim.squads){ let c=0,sx=0,sy=0; for(const s of sq.soldiers){ if(s.alive&&s.vis!==false){c++;sx+=s.x;sy+=s.y;} } let na=0; for(const s of sq.soldiers)if(s.alive)na++; sq.nAlive=na; sq.nVis=c; if(c){sq.mx=sx/c;sq.my=sy/c;} }
   sim.snapAt=now;
@@ -1837,7 +2010,7 @@ const SP={
 };
 const STRIDE={sword:1.6,axe:1.6,spear:1.6,pike:1.6,bow:1.6,pelt:1.6,sbear:1.6,xbow:1.6,berserk:1.7,priest:1.6,lancer:3.4,hxbow:3.4};
 const BB={"sword":{"l":-0.78,"r":0.65,"t":-1.51,"b":0.52},"axe":{"l":-1.58,"r":1.22,"t":-1.98,"b":0.69},"spear":{"l":-0.82,"r":0.65,"t":-2.38,"b":0.82},"pike":{"l":-0.65,"r":0.65,"t":-3.38,"b":1.36},"bow":{"l":-0.72,"r":0.65,"t":-3.38,"b":0.56},"pelt":{"l":-0.65,"r":0.65,"t":-3.18,"b":0.52},"lancer":{"l":-0.55,"r":0.65,"t":-2.54,"b":1.56},"sbear":{"l":-0.82,"r":0.68,"t":-2.38,"b":0.82},"xbow":{"l":-0.85,"r":0.88,"t":-3.21,"b":0.52},"berserk":{"l":-0.95,"r":0.92,"t":-1.34,"b":0.56},"priest":{"l":-1.12,"r":1.25,"t":-1.88,"b":0.52},"hxbow":{"l":-0.65,"r":0.58,"t":-3.01,"b":1.56}}; // габариты спрайта в единицах рига: {l,r,t,b} в пикселях при масштабе 30, хранятся как доли единицы
-const LODS=[30,12];
+const LODS=[48,24,12];
 const cache=new Map(); let budget=0;
 function frameOf(type,team,lod,state,i){
   const key=type+'|'+team+'|'+lod+'|'+state+'|'+i; let f=cache.get(key); if(f)return f;
@@ -1862,9 +2035,45 @@ function measure(){ // для tools: габариты по всем кадрам
   return out;
 }
 const TYPE_OF={sword:'sword',axe:'axe',spear:'spear',pike:'pike',archer:'bow',peltast:'pelt',cav:'lancer',shieldwall:'sbear',xbow:'xbow',berserk:'berserk',priest:'priest',hxbow:'hxbow'};
-PB.Sprites={SP,STRIDE,BB,LODS,TYPE_OF,frame:frameOf,measure,newFrame(){budget=8;}};
+PB.Sprites={SP,STRIDE,BB,LODS,TYPE_OF,frame:frameOf,measure,newFrame(){budget=PB.Sprites.B||8;}};
 
 })(typeof window!=='undefined'?window:globalThis);
+
+/* ---------- телефон: касания, поворот экрана, полный экран ---------- */
+(function(root){
+const M={touch:false,rot:false,locked:false,iw:innerWidth,ih:innerHeight};
+const mq=root.matchMedia&&root.matchMedia('(pointer:coarse)');
+M.touch=!!((mq&&mq.matches)||(navigator.maxTouchPoints>0&&'ontouchstart' in root));
+M.W=()=>M.rot?root.innerHeight:root.innerWidth;
+M.H=()=>M.rot?root.innerWidth:root.innerHeight;
+M.dpr=()=>Math.min(M.touch?1.5:2,root.devicePixelRatio||1);
+// координаты касания/мыши в системе экрана игры (с учётом поворота)
+M.pt=(cx,cy)=>M.rot?{x:cy,y:M.iw-cx}:{x:cx,y:cy};
+M.offs=el=>{let x=0,y=0;while(el&&el!==document.body){x+=el.offsetLeft;y+=el.offsetTop;el=el.offsetParent;}return {x,y};};
+function layout(){
+  const b=document.body, iw=root.innerWidth, ih=root.innerHeight, want=M.touch&&ih>iw*1.02;
+  const was=M.rot; M.rot=want; M.iw=iw; M.ih=ih;
+  b.classList.toggle('touch',M.touch); b.classList.toggle('rot',want);
+  { const lw=want?ih:iw, lh=want?iw:ih; for(const k of [560,700,760,1000])b.classList.toggle('w'+k,lw<=k); b.classList.toggle('h480',lh<=480); }
+  if(want){ b.style.width=ih+'px'; b.style.height=iw+'px'; b.style.left=iw+'px'; b.style.top='0px'; }
+  else { b.style.width=''; b.style.height=''; b.style.left=''; b.style.top=''; }
+  if(was!==want)setTimeout(()=>root.dispatchEvent(new Event('resize')),0);
+}
+M.layout=layout;
+M.tryLock=function(){ try{ const o=screen.orientation; if(o&&o.lock)o.lock('landscape').then(()=>{M.locked=true;setTimeout(layout,200);}).catch(()=>{}); }catch(e){} };
+M.tryFull=function(){ const d=document,el=d.documentElement; if(d.fullscreenElement||d.webkitFullscreenElement)return; const f=el.requestFullscreen||el.webkitRequestFullscreen; if(!f)return; try{ const r=f.call(el); if(r&&r.then)r.then(M.tryLock).catch(()=>{}); }catch(e){} };
+document.addEventListener('fullscreenchange',()=>{ if(document.fullscreenElement)M.tryLock(); else { try{screen.orientation.unlock();}catch(e){} M.locked=false; } setTimeout(layout,200); });
+root.addEventListener('resize',layout); root.addEventListener('orientationchange',()=>setTimeout(layout,250));
+document.addEventListener('DOMContentLoaded',layout); layout();
+if(M.touch){
+  // первое касание: разблокировать звук и развернуть экран
+  let once=false; const first=()=>{ if(once)return; once=true; try{PB.Audio&&PB.Audio.unlock();}catch(e){} M.tryFull(); };
+  document.addEventListener('touchend',first,{capture:true,passive:true});
+  document.addEventListener('contextmenu',e=>{ if(!/INPUT|TEXTAREA/.test(e.target.tagName))e.preventDefault(); });
+  if(root.PB&&PB.Sprites)PB.Sprites.B=4;
+}
+root.PB=root.PB||{}; root.PB.Mobile=M;
+})(window);
 
 /* ===== Игровой экран: камера, отрисовка, ввод (как в Total War), интерфейс боя ===== */
 (function(root){
@@ -1872,6 +2081,7 @@ PB.Sprites={SP,STRIDE,BB,LODS,TYPE_OF,frame:frameOf,measure,newFrame(){budget=8;
 const PB=root.PB, T=PB.t, PI=Math.PI, TAU=Math.PI*2;
 const $=id=>document.getElementById(id);
 const clamp=PB.clamp;
+const ZMAX=40;
 const COL={me:'#6aa5ff',ally:'#62c46a',foe:'#e4584c',meD:'#2c4a80',foeD:'#6e2a24',sel:'#f1d27a',zoneMe:'rgba(106,165,255,.14)',zoneAlly:'rgba(98,196,106,.10)',zoneFoe:'rgba(228,88,76,.10)'};
 const SHORT={sword:T('Мч'),axe:T('То'),spear:T('Кп'),pike:T('Пк'),archer:T('Лу'),peltast:T('Пл'),cav:T('Кн'),shieldwall:T('Щт'),xbow:T('Ар'),berserk:T('Бс'),priest:T('Жр'),hxbow:T('КЛ')};
 
@@ -1927,11 +2137,11 @@ function visSol(s){ if(!s.alive)return false; if(s.team===team)return true; if(r
 function visSq(q){ if(q.team===team)return q.nAlive>0; for(const s of q.soldiers)if(visSol(s))return true; return false; }
 
 function resize(){
-  const r=cv.parentElement.getBoundingClientRect(); dpr=Math.min(2,window.devicePixelRatio||1);
-  W=Math.max(300,r.width); H=Math.max(200,r.height); cv.width=W*dpr; cv.height=H*dpr; cv.style.width=W+'px'; cv.style.height=H+'px';
+  const pe=cv.parentElement; dpr=PB.Mobile.dpr();
+  W=Math.max(300,pe.clientWidth); H=Math.max(200,pe.clientHeight); cv.width=W*dpr; cv.height=H*dpr; cv.style.width=W+'px'; cv.style.height=H+'px';
   fit=Math.min(W,H)/sim.S*0.95; if(cam.z<fit*0.95)cam.z=fit*0.95;
 }
-function clampCam(){ setRot(); const S=sim.S; cam.z=clamp(cam.z,fit*0.95,16);
+function clampCam(){ setRot(); const S=sim.S; cam.z=clamp(cam.z,fit*0.95,ZMAX);
   const vw=W/cam.z, vh=H/cam.z, c=Math.abs(cs), q=Math.abs(sn), ex=(c*vw+q*vh)/2, ey=(q*vw+c*vh)/2, pad=0.05*Math.max(vw,vh);
   cam.x=ex-pad>S-ex+pad?S/2:clamp(cam.x,ex-pad,S-ex+pad); cam.y=ey-pad>S-ey+pad?S/2:clamp(cam.y,ey-pad,S-ey+pad); }
 
@@ -2083,7 +2293,7 @@ function sprState(s,type,simT,odo){
   return ['idle',0];
 }
 function drawSprites(groups,alpha){
-  const SPR=PB.Sprites, fno=++sprFrame, lod=cam.z>=8?0:1, KM=0.95, now=performance.now();
+  const SPR=PB.Sprites, fno=++sprFrame, lod=cam.z>=16?0:cam.z>=7?1:2, KM=0.95, now=performance.now();
   const simT=role==='guest'?sim.t+(now-sim.snapAt)/1000:sim.t+alpha*sim.DT;
   SPR.newFrame(); ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality='high';
   const mg=Math.max(40,KM*cam.z*3.6);
@@ -2283,7 +2493,56 @@ function groupSelected(){
 }
 
 /* ---------- мышь ---------- */
-function localPos(e){const r=cv.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};}
+function localPos(e){ if(e._loc)return e._loc; if(PB.Mobile.rot)return PB.Mobile.pt(e.clientX,e.clientY); const r=cv.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};}
+/* ---------- касания (телефон) ---------- */
+const tmode={order:false,box:false};
+let tg=null, lastTap={t:0,x:0,y:0};
+function tl(t){ return PB.Mobile.pt(t.clientX,t.clientY); }
+function onTS(e){
+  e.preventDefault(); if(!G.active||!$('g-menu').hidden)return;
+  const ts=e.touches;
+  if(ts.length>=2){
+    drag=null; rdrag=null; const a=tl(ts[0]), b=tl(ts[1]);
+    tg={two:true,d:Math.hypot(a.x-b.x,a.y-b.y)||1,an:Math.atan2(b.y-a.y,b.x-a.x),cx:(a.x+b.x)/2,cy:(a.y+b.y)/2}; return;
+  }
+  const t=ts[0], p=tl(t), w=s2w(p.x,p.y), now=performance.now();
+  tg={one:true,sx:p.x,sy:p.y,t0:now,moved:false,t};
+  if(tmode.box){ mouse.x=p.x;mouse.y=p.y; drag={box:true,sx:p.x,sy:p.y,wx:w.x,wy:w.y,on:null,add:false,ctrl:false,shift:false,moved:false,dbl:false}; tg.kind='box'; return; }
+  if(tmode.order){ mouse.x=p.x;mouse.y=p.y; rdrag={sx:p.x,sy:p.y,wx:w.x,wy:w.y,cx:w.x,cy:w.y,line:false}; tg.kind='order'; return; }
+  // выбор: палец на своём отряде или на ручке строя ведёт себя как левая кнопка мыши
+  let hitOwn=false;
+  if(sel.length===1){ const q=sim.squads[sel[0]]; if(q&&q.owner===me&&q.nAlive>0){ for(const h of handles(q)){ if(Math.hypot(h.x-w.x,h.y-w.y)<=Math.max(4,30/cam.z)){ hitOwn=true; } } } }
+  const bq=bannerAt(p.x,p.y); if(bq&&bq.owner===me)hitOwn=true; else if(squadAt(w.x,w.y,q=>q.owner===me))hitOwn=true;
+  if(hitOwn){ const det=(now-lastTap.t<380&&Math.hypot(p.x-lastTap.x,p.y-lastTap.y)<30)?2:1; tg.kind='mouse'; onDown(Object.assign(mouseLike(p,0),{detail:det})); }
+  else { tg.kind='pan'; tg.cx=cam.x; tg.cy=cam.y; }
+}
+function mouseLike(p,btn){ return {clientX:p.x,clientY:p.y,_loc:p,button:btn,shiftKey:false,ctrlKey:false,metaKey:false,detail:1,preventDefault(){}}; }
+function onTM(e){
+  e.preventDefault(); if(!G.active||!tg)return; const ts=e.touches;
+  if(tg.two){
+    if(ts.length<2)return; const a=tl(ts[0]), b=tl(ts[1]), d=Math.hypot(a.x-b.x,a.y-b.y)||1, an=Math.atan2(b.y-a.y,b.x-a.x), cx=(a.x+b.x)/2, cy=(a.y+b.y)/2;
+    const before=s2w(tg.cx,tg.cy);
+    cam.z=clamp(cam.z*d/tg.d,fit*0.95,ZMAX); let da=an-tg.an; if(da>PI)da-=TAU; else if(da<-PI)da+=TAU; cam.rot+=da; setRot();
+    const after=s2w(cx,cy); cam.x+=before.x-after.x; cam.y+=before.y-after.y; clampCam();
+    tg.d=d; tg.an=an; tg.cx=cx; tg.cy=cy; return;
+  }
+  if(!tg.one||ts.length<1)return; const p=tl(ts[0]);
+  if(Math.hypot(p.x-tg.sx,p.y-tg.sy)>10)tg.moved=true;
+  if(tg.kind==='pan'){ if(tg.moved){ const dx=p.x-tg.sx,dy=p.y-tg.sy; cam.x=tg.cx-(cs*dx+sn*dy)/cam.z; cam.y=tg.cy-(-sn*dx+cs*dy)/cam.z; clampCam(); } return; }
+  onMove(mouseLike(p,0));
+}
+function onTE(e){
+  e.preventDefault(); if(!tg)return;
+  if(tg.two){ if(e.touches.length===0)tg=null; else if(e.touches.length===1){ const p=tl(e.touches[0]); tg={one:true,sx:p.x,sy:p.y,t0:performance.now(),moved:true,kind:'dead'}; } return; }
+  const g=tg; tg=null; const t=e.changedTouches[0]; if(!t)return; const p=tl(t);
+  if(g.kind==='dead')return;
+  if(g.kind==='pan'){ if(!g.moved){ lastTap={t:performance.now(),x:p.x,y:p.y}; onDown(mouseLike(p,0)); onUp(mouseLike(p,0)); } return; }
+  if(g.kind==='order'){ const ev=mouseLike(p,2); onUp(ev); return; }
+  if(g.kind==='mouse'){ lastTap={t:performance.now(),x:p.x,y:p.y}; onUp(mouseLike(p,0)); return; }
+  if(g.kind==='box'){ onUp(mouseLike(p,0)); }
+}
+function setTMode(k){ const v=!tmode[k]; tmode.order=false; tmode.box=false; if(v)tmode[k]=true; $('b-torder').classList.toggle('on',tmode.order); $('b-tbox').classList.toggle('on',tmode.box); toast(tmode.order?T('Режим приказа: касание — идти или атаковать, протяжка — строй'):tmode.box?T('Режим рамки: проведите пальцем по отрядам'):T('Режим выбора: касание — выбрать отряд, палец — двигать карту')); }
+
 function onDown(e){
   const p=localPos(e); mouse.x=p.x;mouse.y=p.y; const w=s2w(p.x,p.y);
   if(e.button===1){drag={pan:true,sx:p.x,sy:p.y,cx:cam.x,cy:cam.y};e.preventDefault();return;}
@@ -2342,7 +2601,7 @@ function pushShot(now,k,x1,y1,x2,y2,spread){ const len=Math.hypot(x2-x1,y2-y1); 
 function flash(q){ fxs.push({k:9,t0:performance.now(),dur:300,x1:q.mx,y1:q.my,x2:q.mx,y2:q.my}); }
 function onWheel(e){
   e.preventDefault(); const p=localPos(e); const before=s2w(p.x,p.y); const k=Math.exp(-e.deltaY*0.0014*cfg.zoom);
-  cam.z=clamp(cam.z*k,fit*0.95,16); setRot(); const after=s2w(p.x,p.y); cam.x+=before.x-after.x; cam.y+=before.y-after.y; clampCam();
+  cam.z=clamp(cam.z*k,fit*0.95,ZMAX); setRot(); const after=s2w(p.x,p.y); cam.x+=before.x-after.x; cam.y+=before.y-after.y; clampCam();
 }
 function onKey(e){
   modCtrl=e.ctrlKey||e.metaKey;
@@ -2352,11 +2611,12 @@ function onKey(e){
   if(c==='Space'){ if(role==='solo'){paused=!paused;$('b-pause').classList.toggle('on',paused);} e.preventDefault(); return; }
   if(c==='Escape'){ if(!$('g-menu').hidden)closeMenu(); else openMenu(); return; }
   const list=liveSel(); const dg=/^(Digit|Numpad)([0-9])$/.exec(c);
-  if(dg){ const k=dg[2]; const ug=ugroups.find(g=>String(g.num)===k); if(!(e.ctrlKey||e.metaKey)&&ug){ sel=ug.ids.filter(i=>sim.squads[i]&&sim.squads[i].nAlive>0); anchor=sel[0]; refreshCards(); return; } if(e.ctrlKey||e.metaKey){groups[k]=list.map(q=>q.id);e.preventDefault();toast(T('Группа ')+k+T(' сохранена'));} else if(groups[k]){sel=groups[k].filter(i=>sim.squads[i]&&sim.squads[i].nAlive>0);refreshCards();} return; }
+  if(dg){ const k=dg[2]; const ug=ugroups.find(g=>String(g.num)===k); if(!(e.ctrlKey||e.metaKey)&&ug){ const gi=ug.ids.filter(i=>sim.squads[i]&&sim.squads[i].nAlive>0); sel=e.shiftKey?[...new Set([...sel,...gi])]:gi; anchor=gi[0]; refreshCards(); return; } if(e.ctrlKey||e.metaKey){groups[k]=list.map(q=>q.id);e.preventDefault();toast(T('Группа ')+k+T(' сохранена'));} else if(groups[k]){sel=groups[k].filter(i=>sim.squads[i]&&sim.squads[i].nAlive>0);refreshCards();} return; }
   if(c==='KeyA'&&(e.ctrlKey||e.metaKey)){ sel=mySquads().filter(q=>q.nAlive>0).map(q=>q.id); e.preventDefault(); refreshCards(); return; }
   if(c==='KeyG'){ groupSelected(); return; }
   if(sim.phase!=='battle')return;
   if(c==='KeyH'||c==='Backspace'||c==='KeyX'){ for(const q of list)issue(q.id,{k:'stop'}); e.preventDefault(); }
+  else if(c==='KeyV'){ const v=!(list[0]&&list[0].hf); for(const q of list)issue(q.id,{k:'hold',v}); syncBtns(); }
   else if(c==='KeyF'){ const v=!(list[0]&&list[0].fire); for(const q of list)issue(q.id,{k:'fire',v}); syncBtns(); }
 }
 function panKeys(dt){
@@ -2382,7 +2642,10 @@ function refreshCards(){
       d.onclick=e=>{ pickSquad(q.id,e.shiftKey?'range':(e.ctrlKey||e.metaKey)?'toggle':'set'); if(e.detail>=2){cam.x=q.mx;cam.y=q.my;clampCam();} refreshCards(); }; return d; };
     for(const it of lay){
       if(it.grp){ const w=document.createElement('div'); w.className='grp'; const hd=document.createElement('div'); hd.className='gh';
-        const h=document.createElement('button'); h.className='gsel'; h.textContent=T('Группа ')+it.grp.num+T('  ·  клавиша ')+it.grp.num; h.title=T('Выбрать всю группу'); h.onclick=()=>{ sel=expandGroups(it.ids); anchor=it.ids[0]; refreshCards(); };
+        const h=document.createElement('button'); h.className='gsel'; h.textContent=T('Группа ')+it.grp.num+T('  ·  клавиша ')+it.grp.num; h.title=T('Выбрать всю группу'); h.onclick=e=>{ const gids=expandGroups(it.ids);
+          if(e.shiftKey&&anchor!=null){ const ord=cardOrder(), ia=ord.indexOf(anchor); let ib=ord.indexOf(it.ids[0]); if(ia>=0&&ib>=0){ if(ib>ia)ib=ord.indexOf(it.ids[it.ids.length-1]); const lo=Math.min(ia,ib), hi=Math.max(ia,ib); sel=expandGroups(ord.slice(lo,hi+1)); refreshCards(); return; } }
+          if(e.ctrlKey||e.metaKey){ const all=gids.every(i=>sel.includes(i)); sel=all?sel.filter(i=>!gids.includes(i)):[...new Set([...sel,...gids])]; anchor=it.ids[0]; refreshCards(); return; }
+          sel=gids; anchor=it.ids[0]; refreshCards(); };
         const x=document.createElement('button'); x.textContent='✕'; x.className='gx'; x.title=T('Распустить группу'); x.onclick=()=>{ ugroups=ugroups.filter(g=>g!==it.grp); cardsKey=''; refreshCards(); };
         hd.appendChild(h); hd.appendChild(x); w.appendChild(hd); const row=document.createElement('div'); row.className='gr'; for(const id of it.ids)row.appendChild(mk(sim.squads[id])); w.appendChild(row); box.appendChild(w); }
       else box.appendChild(mk(sim.squads[it.ids[0]])); } }
@@ -2395,7 +2658,7 @@ function refreshCards(){
     d.querySelector('.ct').textContent=q.nAlive+'/'+q.soldiers.length+ex; }
   syncBtns();
 }
-function syncBtns(){ const l=liveSel(); $('b-fire').classList.toggle('on',!!(l[0]&&l[0].fire));
+function syncBtns(){ $('b-hold').classList.toggle('on',!!(liveSel()[0]&&liveSel()[0].hf)); const l=liveSel(); $('b-fire').classList.toggle('on',!!(l[0]&&l[0].fire));
   const ids=l.map(q=>q.id), isG=ugroups.some(g=>ids.length&&g.ids.length===ids.length&&g.ids.every(i=>ids.includes(i)));
   const gb=$('b-group'); gb.textContent=isG?T('Разгруппировать'):T('Объединить'); gb.disabled=!isG&&ids.length<2; }
 let prevPhase='',prevOwner=-2;
@@ -2453,7 +2716,7 @@ G.pushEvents=function(evs){ const now=performance.now(); for(const e of evs||[])
 G.start=function(c){
   sim=c.sim;me=c.me;role=c.role;io=c.io;team=sim.players[me].team;flip=team===1;baseRot=flip?PI:0;sel=[];groups={};ugroups=[];anchor=null;prevPhase='';prevOwner=-2;cardsKey='';fxs=[];keys={};ending=false;paused=false;acc=0;speed=1;tickN=0;ground=null;cam.rot=0;setRot();
   cv=$('cv');ctx=cv.getContext('2d');mm=$('mm');mctx=mm.getContext('2d'); $('g-end').hidden=true;
-  mm.width=mm.height=180*Math.min(2,window.devicePixelRatio||1); mm.style.width=mm.style.height='180px';
+  { const ms=PB.Mobile.touch?118:180; mm.width=mm.height=ms*PB.Mobile.dpr(); mm.style.width=mm.style.height=ms+'px'; }
   makeTufts(); G.active=true; resize(); try{history.pushState({g:1},'');}catch(e){}
   // стартовая камера: видно все отряды своей команды, но не дальше
   let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9; for(const q of sim.squads){ if(q.team!==team)continue; const hw=Math.max(1,Math.min(q.width,q.nAlive))*q.fsp/2+4; x0=Math.min(x0,q.cx-hw);x1=Math.max(x1,q.cx+hw);y0=Math.min(y0,q.cy-6);y1=Math.max(y1,q.cy+6); }
@@ -2476,8 +2739,13 @@ function bind(){
   cv.addEventListener('mousedown',onDown); window.addEventListener('mousemove',e=>{ if(G.active)onMove(e); }); window.addEventListener('mouseup',e=>{ if(G.active)onUp(e); });
   cv.addEventListener('mouseleave',()=>{mouse.in=false;}); cv.addEventListener('wheel',onWheel,{passive:false}); cv.addEventListener('contextmenu',e=>e.preventDefault());
   window.addEventListener('keydown',onKey); window.addEventListener('keyup',onKey); window.addEventListener('blur',()=>{keys={};modCtrl=false;}); window.addEventListener('resize',()=>{if(G.active)resize();});
+  cv.addEventListener('touchstart',onTS,{passive:false}); cv.addEventListener('touchmove',onTM,{passive:false}); cv.addEventListener('touchend',onTE,{passive:false}); cv.addEventListener('touchcancel',onTE,{passive:false});
+  $('b-torder').onclick=()=>setTMode('order'); $('b-tbox').onclick=()=>setTMode('box');
+  { const mmGo=(cx,cy)=>{ const M=PB.Mobile, p=M.pt(cx,cy), o=M.offs(mm.parentElement), px=(p.x-o.x)/mm.offsetWidth, py=(p.y-o.y)/mm.offsetHeight, S=sim.S; cam.x=(flip?1-px:px)*S; cam.y=(flip?1-py:py)*S; clampCam(); };
+    for(const ev of ['touchstart','touchmove'])mm.addEventListener(ev,e=>{ e.preventDefault(); e.stopPropagation(); mmGo(e.touches[0].clientX,e.touches[0].clientY); },{passive:false}); }
   mm.addEventListener('mousedown',e=>{ const r=mm.getBoundingClientRect(); const px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height; const S=sim.S; cam.x=(flip?1-px:px)*S; cam.y=(flip?1-py:py)*S; clampCam(); });
   cv.addEventListener('mousemove',e=>{ if(!G.active)return; const p=localPos(e), w=s2w(p.x,p.y), t=terrainAt(w.x,w.y); const el=$('g-terr'); el.textContent=t; el.hidden=!t; });
+  $('b-hold').onclick=()=>{const l=liveSel();const v=!(l[0]&&l[0].hf);for(const q of l)issue(q.id,{k:'hold',v});syncBtns();};
   $('b-fire').onclick=()=>{const l=liveSel();const v=!(l[0]&&l[0].fire);for(const q of l)issue(q.id,{k:'fire',v});syncBtns();};
   $('b-stop').onclick=()=>{for(const q of liveSel())issue(q.id,{k:'stop'});};
   $('b-group').onclick=groupSelected;
@@ -2624,7 +2892,7 @@ function init(cfg,scr,cv,idx){let raf=0;
   const count={embers:70,snow:200,rain:260,leaves:36,ash:120,dust:40}[cfg.fx]||0;
   const fogs=[];for(let i=0;i<(cfg.fx==='fog'?9:0);i++)fogs.push({x:R(),y:.5+R()*.4,r:.25+R()*.3,v:.004+R()*.01,a:.12+R()*.2});
   let flash=0,nextL=3,bolt=null;
-  function resize(){W=innerWidth;H=innerHeight;dp=Math.min(2,devicePixelRatio||1);cv.width=W*dp;cv.height=H*dp;mkField();P.length=0;for(let i=0;i<count;i++)spawn(true)}
+  function resize(){const M=PB.Mobile;W=M?M.W():innerWidth;H=M?M.H():innerHeight;dp=M?M.dpr():Math.min(2,devicePixelRatio||1);cv.width=W*dp;cv.height=H*dp;mkField();P.length=0;for(let i=0;i<count;i++)spawn(true)}
   addEventListener('resize',()=>{if(vis)resize()});resize();
   window.addEventListener('pointermove',e=>{const r=scr.getBoundingClientRect();mx=((e.clientX-r.left)/r.width-.5)*2;my=((e.clientY-r.top)/r.height-.5)*2});
   
@@ -2678,6 +2946,128 @@ let api=null;
 PB.menuBG={start(){const cv=document.getElementById('m-bg'),scr=cv;if(!cv||!scr)return;if(!api)api=init(cfg,scr,cv,3);api.start()},stop(){api&&api.stop()}};
 })();
 
+/* ---------- аккаунты, друзья, личные сообщения (клиент) ---------- */
+(function(root){
+'use strict';
+const PB=root.PB, T=PB.t, $=id=>document.getElementById(id);
+const KEY='tc-token';
+const A={me:null,friends:[],reqIn:[],reqOut:[],status:'off',chat:null,msgs:{},ws:null,intentional:false};
+const subs=[]; const emit=()=>{ for(const f of subs){ try{f();}catch(e){} } };
+A.on=f=>subs.push(f);
+const url=()=>(PB.serverURL&&PB.serverURL())||'';
+const getTok=()=>{ try{return localStorage.getItem(KEY)||'';}catch(e){return '';} };
+const setTok=t=>{ try{ if(t)localStorage.setItem(KEY,t); else localStorage.removeItem(KEY); }catch(e){} };
+let hb=null, retry=0, retryT=null, pend=null;
+function clearState(){ A.me=null; A.friends=[]; A.reqIn=[]; A.reqOut=[]; A.chat=null; A.msgs={}; A.status='off'; }
+function send(m){ if(A.ws&&A.ws.readyState===1){ try{A.ws.send(JSON.stringify(m));}catch(e){} } }
+A.send=send;
+function open(first){
+  return new Promise((res,rej)=>{
+    const u=url(); if(!u){ rej(new Error('nosrv')); return; }
+    A.intentional=true; try{A.ws&&A.ws.close();}catch(e){} A.intentional=false; clearInterval(hb); clearTimeout(retryT);
+    let ws; try{ ws=new WebSocket(u); }catch(e){ rej(new Error('nosrv')); return; } A.ws=ws; A.status='conn'; emit();
+    let settled=false; const done=(ok,v)=>{ if(settled)return; settled=true; ok?res(v):rej(v); };
+    const to=setTimeout(()=>{ try{ws.close();}catch(e){} done(false,new Error('timeout')); },45000);
+    ws.onopen=()=>ws.send(JSON.stringify(first));
+    ws.onmessage=ev=>{ let m; try{m=JSON.parse(ev.data);}catch(e){return;}
+      if(m.t==='authok'){ clearTimeout(to); if(m.token)setTok(m.token); A.status='on'; retry=0; hb=setInterval(()=>send({t:'ping'}),25000); done(true,m); }
+      else if(m.t==='autherr'){ clearTimeout(to); if(m.e==='token')setTok(''); A.status='off'; emit(); done(false,new Error(m.e)); }
+      else handle(m); };
+    ws.onclose=()=>{ clearTimeout(to); clearInterval(hb); const was=A.status==='on'; if(ws!==A.ws)return; A.status='off'; if(!settled)done(false,new Error('closed')); emit(); if(!A.intentional&&getTok()&&(was||retry>0))scheduleRetry(); };
+    ws.onerror=()=>{};
+  });
+}
+function scheduleRetry(){ clearTimeout(retryT); retry++; const d=Math.min(30000,2000*retry); retryT=setTimeout(()=>{ if(A.status==='on'||!getTok())return; open({t:'auth',token:getTok()}).catch(()=>{ if(getTok()&&A.status!=='on')scheduleRetry(); }); },d); }
+function handle(m){
+  if(m.t==='state'){ const first=!A.me; A.me=m.me; A.friends=m.friends; A.reqIn=m.reqIn; A.reqOut=m.reqOut; if(first){ const n=$('m-name'); if(n&&!n.value)n.value=m.me.nick; } emit(); }
+  else if(m.t==='presence'){ const f=A.friends.find(x=>x.id===m.id); if(f){f.online=m.online;emit();} }
+  else if(m.t==='results'){ A.onResults&&A.onResults(m); }
+  else if(m.t==='hist'){ A.msgs[m.with]=m.msgs; emit(); }
+  else if(m.t==='dm'){ const x=m.m, other=x.from===A.me.id?x.to:x.from; const l=A.msgs[other]||(A.msgs[other]=[]); if(!l.some(y=>y.id===x.id))l.push(x);
+    if(x.from!==A.me.id){ const f=A.friends.find(y=>y.id===other); const visible=!$('s-fr').hidden&&A.chat===other; if(visible)send({t:'read',with:other}); else { if(f)f.unread=(f.unread||0)+1; A.onIncoming&&A.onIncoming(f,x); } } emit(); }
+}
+A.register=(nick,pass)=>open({t:'register',nick,pass});
+A.login=(nick,pass)=>open({t:'login',nick,pass});
+A.logout=()=>{ const t=getTok(); send({t:'logout',token:t}); setTok(''); A.intentional=true; setTimeout(()=>{ try{A.ws&&A.ws.close();}catch(e){} },200); clearState(); emit(); };
+A.start=()=>{ if(getTok()&&url())open({t:'auth',token:getTok()}).catch(e=>{ if(getTok()&&e.message!=='token')scheduleRetry(); }); };
+A.totalUnread=()=>A.friends.reduce((n,f)=>n+(f.unread||0),0);
+A.enabled=()=>!!url();
+PB.Acct=A;
+
+/* ---------- интерфейс ---------- */
+const ERR={nick:'Ник: 3–16 символов — буквы, цифры, пробел, «_» или «-»',pass:'Пароль: от 6 до 64 символов',taken:'Этот ник уже занят',bad:'Неверный ник или пароль',rate:'Слишком много попыток. Подождите несколько минут',srv:'Ошибка сервера, попробуйте позже',timeout:'Сервер не отвечает. Подождите минуту и повторите',closed:'Соединение закрыто',nosrv:'Аккаунты работают через сервер связи. Адрес сервера не задан',token:'Сессия устарела, войдите заново'};
+const errT=e=>T(ERR[e]||'Не удалось подключиться к серверу');
+let mode='login';
+function fmtTime(ts){ const d=new Date(ts), p=n=>String(n).padStart(2,'0'); return p(d.getHours())+':'+p(d.getMinutes()); }
+function el(tag,cls,txt){ const e=document.createElement(tag); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e; }
+function renderAcct(){
+  const me=A.me, g=$('ac-guest'), m=$('ac-me'); g.hidden=!!me; m.hidden=!me;
+  if(me){ $('ac-nick').textContent=me.nick; $('ac-id').textContent=me.id; $('ac-st').textContent=A.status==='on'?T('в сети'):T('нет соединения с сервером, пробуем снова…'); }
+  else { for(const b of document.querySelectorAll('#ac-tabs button'))b.classList.toggle('on',b.dataset.m===mode); $('ac-p2w').hidden=mode!=='reg'; $('ac-go').textContent=mode==='reg'?T('Создать аккаунт'):T('Войти'); $('ac-note').textContent=mode==='reg'?T('Восстановить пароль нельзя: на почту ничего не привязывается. Запомните его.'):''; }
+}
+function openAcct(msg){ if(!A.enabled()){ $('ac-guest').hidden=false; $('ac-me').hidden=true; $('ac-form').hidden=true; $('ac-msg').textContent=T(ERR.nosrv); $('s-acct').hidden=false; return; } $('ac-form').hidden=false; $('ac-msg').textContent=msg||''; renderAcct(); $('s-acct').hidden=false; }
+async function submitAcct(){
+  const nick=$('ac-n').value.trim(), pass=$('ac-p').value; const msg=$('ac-msg'); msg.textContent='';
+  if(mode==='reg'&&pass!==$('ac-p2').value){ msg.textContent=T('Пароли не совпадают'); return; }
+  $('ac-go').disabled=true; msg.textContent=T('Подключаемся…');
+  try{ await (mode==='reg'?A.register(nick,pass):A.login(nick,pass)); $('ac-p').value=''; $('ac-p2').value=''; msg.textContent=''; }
+  catch(e){ msg.textContent=errT(e.message); }
+  $('ac-go').disabled=false; renderAcct();
+}
+/* друзья */
+function renderFriends(){
+  const box=$('fr-list'); if(!box)return; box.innerHTML='';
+  if(A.reqIn.length){ box.appendChild(el('div','fr-h',T('Заявки в друзья')));
+    for(const u of A.reqIn){ const r=el('div','fr-row'); r.appendChild(el('span','fr-n',u.nick)); r.appendChild(el('span','dim sm','#'+u.id)); const a=el('button','btn s',T('Принять')); a.onclick=()=>send({t:'faccept',id:u.id}); const d=el('button','btn s',T('Отклонить')); d.onclick=()=>send({t:'fdecline',id:u.id}); r.append(a,d); box.appendChild(r); } }
+  box.appendChild(el('div','fr-h',T('Друзья')+' ('+A.friends.length+')'));
+  if(!A.friends.length)box.appendChild(el('div','dim sm',T('Пока никого. Найдите игрока по нику или ID.')));
+  const fl=A.friends.slice().sort((a,b)=>(b.online-a.online)||a.nick.localeCompare(b.nick));
+  for(const f of fl){ const r=el('div','fr-row fr-f'+(A.chat===f.id?' on':'')); r.appendChild(el('i','dot'+(f.online?' on':''))); r.appendChild(el('span','fr-n',f.nick)); r.appendChild(el('span','dim sm','#'+f.id)); if(f.unread)r.appendChild(el('b','badge',String(f.unread))); r.onclick=()=>openChat(f.id); box.appendChild(r); }
+  if(A.reqOut.length){ box.appendChild(el('div','fr-h',T('Отправленные заявки')));
+    for(const u of A.reqOut){ const r=el('div','fr-row'); r.appendChild(el('span','fr-n',u.nick)); r.appendChild(el('span','dim sm','#'+u.id)); const d=el('button','btn s',T('Отменить')); d.onclick=()=>send({t:'fdecline',id:u.id}); r.appendChild(d); box.appendChild(r); } }
+  renderChat(); updateBadge();
+}
+function renderChat(){
+  const f=A.friends.find(x=>x.id===A.chat); $('ch-empty').hidden=!!f; $('ch-main').hidden=!f; if(!f)return;
+  $('ch-name').textContent=f.nick; $('ch-id').textContent='#'+f.id; $('ch-st').textContent=f.online?T('в сети'):T('не в сети');
+  const box=$('ch-msgs'); const stick=box.scrollTop+box.clientHeight>=box.scrollHeight-30; box.innerHTML='';
+  for(const x of (A.msgs[f.id]||[])){ const mine=x.from===A.me.id; const d=el('div','msg2'+(mine?' me':'')); d.appendChild(el('div','tx',x.text)); d.appendChild(el('div','tm2',fmtTime(x.ts))); box.appendChild(d); }
+  if(stick||true)box.scrollTop=box.scrollHeight;
+}
+function openChat(id){ A.chat=id; const f=A.friends.find(x=>x.id===id); if(f)f.unread=0; send({t:'hist',with:id}); renderFriends(); setTimeout(()=>$('ch-in').focus(),50); }
+function sendChat(){ const t=$('ch-in').value.trim(); if(!t||A.chat==null)return; send({t:'dm',to:A.chat,text:t}); $('ch-in').value=''; }
+function renderResults(m){
+  const box=$('fr-res'); box.innerHTML=''; if(!m.list.length){ box.appendChild(el('div','dim sm',T('Никого не найдено'))); return; }
+  for(const u of m.list){ const r=el('div','fr-row'); r.appendChild(el('i','dot'+(u.online?' on':''))); r.appendChild(el('span','fr-n',u.nick)); r.appendChild(el('span','dim sm','#'+u.id));
+    let b; if(u.rel==='none'){ b=el('button','btn s',T('Добавить')); b.onclick=()=>{ send({t:'freq',id:u.id}); b.disabled=true; b.textContent=T('Заявка отправлена'); }; }
+    else if(u.rel==='in'){ b=el('button','btn s',T('Принять')); b.onclick=()=>{ send({t:'faccept',id:u.id}); b.disabled=true; }; }
+    else { b=el('span','tag',u.rel==='friend'?T('в друзьях'):u.rel==='out'?T('заявка отправлена'):T('это вы')); }
+    r.appendChild(b); box.appendChild(r); }
+}
+function doSearch(){ const q=$('fr-q').value.trim(); if(!q)return; send({t:'search',q}); }
+function updateBadge(){ const n=A.totalUnread(), b=$('m-friends'); if(!b)return; b.dataset.n=n?String(n):''; b.textContent=T('Друзья')+(n?' ('+n+')':''); }
+function openFriends(){ if(!A.enabled()||!A.me){ openAcct(A.enabled()?T('Войдите или создайте аккаунт, чтобы пользоваться друзьями.'):''); return; } $('fr-res').innerHTML=''; $('fr-q').value=''; renderFriends(); $('s-fr').hidden=false; if(A.chat!=null)openChat(A.chat); }
+function renderMenu(){ const b=$('m-prof'), lab=$('m-acct'); if(lab){ lab.textContent=A.me?(A.me.nick+' · ID '+A.me.id):''; lab.hidden=!A.me; } if(b)b.textContent=A.me?T('Профиль'):T('Войти'); updateBadge(); }
+function init(){
+  if(!$('m-prof'))return;
+  for(const id of ['m-prof','m-friends'])$(id).classList.remove('soon');
+  $('m-prof').onclick=()=>openAcct(); $('m-friends').onclick=openFriends;
+  $('ac-close').onclick=()=>{ $('s-acct').hidden=true; };
+  for(const b of document.querySelectorAll('#ac-tabs button'))b.onclick=()=>{ mode=b.dataset.m; $('ac-msg').textContent=''; renderAcct(); };
+  $('ac-go').onclick=submitAcct; for(const id of ['ac-n','ac-p','ac-p2'])$(id).addEventListener('keydown',e=>{ if(e.key==='Enter')submitAcct(); });
+  $('ac-copy').onclick=()=>{ const t=String(A.me.id); (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>{ $('ac-copy').textContent=T('Скопировано'); setTimeout(()=>{$('ac-copy').textContent=T('Копировать');},1200); },()=>{}); };
+  $('ac-out').onclick=()=>{ A.logout(); $('s-acct').hidden=true; };
+  $('fr-close').onclick=()=>{ $('s-fr').hidden=true; }; $('fr-go').onclick=doSearch; $('fr-q').addEventListener('keydown',e=>{ if(e.key==='Enter')doSearch(); });
+  $('ch-send').onclick=sendChat; $('ch-in').addEventListener('keydown',e=>{ if(e.key==='Enter')sendChat(); });
+  $('ch-del').onclick=()=>{ const f=A.friends.find(x=>x.id===A.chat); if(!f)return; if(!$('ch-del').dataset.arm){ $('ch-del').dataset.arm='1'; $('ch-del').textContent=T('Точно удалить?'); setTimeout(()=>{ $('ch-del').dataset.arm=''; $('ch-del').textContent=T('Удалить из друзей'); },3000); return; } $('ch-del').dataset.arm=''; $('ch-del').textContent=T('Удалить из друзей'); send({t:'fremove',id:f.id}); A.chat=null; };
+  A.onResults=renderResults;
+  A.onIncoming=(f,x)=>{ if(PB.Game&&PB.Game.toast&&!$('s-game').hidden)PB.Game.toast((f?f.nick:'?')+': '+x.text.slice(0,40)); try{PB.Audio&&PB.Audio.play('select');}catch(e){} };
+  A.on(()=>{ renderMenu(); if(!$('s-acct').hidden)renderAcct(); if(!$('s-fr').hidden){ if(A.me)renderFriends(); else $('s-fr').hidden=true; } });
+  renderMenu(); A.start();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init); else init();
+})(window);
+
 /* ===== Меню, лобби, армия, сетевая склейка ===== */
 (function(root){
 'use strict';
@@ -2700,12 +3090,18 @@ const BAL_HASH=(()=>{let h=5381;const s=JSON.stringify(BAL);for(let i=0;i<s.leng
 if(PB.I18n)PB.I18n.localize(BAL);
 
 let app={role:null,name:'',host:null,guest:null,lobby:null,me:-1,sim:null,bal:BAL,inGame:false,counts:{}};
+/* запоминаем комнату на случай обновления страницы */
+const SESS_KEY='tc-sess';
+function saveSess(extra){ try{ const o=Object.assign(JSON.parse(sessionStorage.getItem(SESS_KEY)||'{}'),extra||{}); sessionStorage.setItem(SESS_KEY,JSON.stringify(o)); }catch(e){} }
+function loadSess(){ try{ return JSON.parse(sessionStorage.getItem(SESS_KEY)||'null'); }catch(e){ return null; } }
+function clearSess(){ try{ sessionStorage.removeItem(SESS_KEY); }catch(e){} }
+function rndToken(){ try{ const a=new Uint8Array(16); crypto.getRandomValues(a); return Array.from(a,x=>x.toString(16).padStart(2,'0')).join(''); }catch(e){ return String(Math.random()).slice(2)+Date.now(); } }
 const show=id=>{if(PB.Audio&&id!=='s-game')PB.Audio.mood('menu'); for(const s of ['s-menu','s-lobby','s-game'])$(s).hidden=s!==id;$('m-full').hidden=id==='s-game';if(PB.menuBG){if(id!=='s-game')PB.menuBG.start();else PB.menuBG.stop();}};
 function say(t,ok){const m=$('m-msg');m.textContent=t||'';m.className='msg'+(ok?' ok':'');}
 function rnd(n){return Math.floor(Math.random()*n);}
 function defaultOpts(){
   const g=app.bal.global;
-  return {mode:'1v1',limitMode:'points',testUnits:false,open:false,fillBots:true,terrainPreset:'proc',mapSize:1000,fog:!!g.fog,morale:g.morale!==false,battleTime:g.battleTime,
+  return {mode:'1v1',limitMode:'limit',testUnits:false,open:false,fillBots:true,terrainPreset:'proc',mapSize:1000,fog:!!g.fog,morale:g.morale!==false,battleTime:g.battleTime,
     deployTime:g.deployTime,zonePct:g.zonePct,squadScale:g.squadScale,budgetPerSquad:g.budgetPerSquad,
     limitN:{'1v1':g.limits['1v1'],'2v2':g.limits['2v2'],'3v3':g.limits['3v3']},adv:{},terrain:Object.assign({},g.terrain)};
 }
@@ -2745,7 +3141,7 @@ function initMenu(){
   const hash=(location.hash||'').replace('#','').toUpperCase(); if(/^[A-Z0-9]{5}$/.test(hash)){$('m-code').value=hash;$('s-play').hidden=false;say(T('Введите имя и нажмите «Войти по коду»'),true);}
   $('m-create').onclick=()=>{$('s-play').hidden=true;createLobby();}; $('m-solo').onclick=()=>{$('s-play').hidden=true;startSoloLobby();}; $('m-join').onclick=()=>{$('s-play').hidden=true;joinLobby();};
   $('m-play').onclick=()=>{$('s-play').hidden=false;setTimeout(()=>$('m-name').focus(),30);}; $('play-close').onclick=()=>{$('s-play').hidden=true;};
-  for(const [id,t] of [['m-prof',T('Профиль')],['m-rank',T('Рейтинговый бой')],['m-friends',T('Друзья')]])$(id).onclick=()=>say(t+T(': раздел появится позже'),true);
+  for(const [id,t] of [['m-rank',T('Рейтинговый бой')]])$(id).onclick=()=>say(t+T(': раздел появится позже'),true);
   initWiki(); initRooms();
   $('m-code').addEventListener('keydown',e=>{if(e.key==='Enter')joinLobby();});
   $('e-back').onclick=()=>leaveAll();
@@ -2754,35 +3150,42 @@ function initMenu(){
   $('l-opts').onclick=()=>{$('s-lset').hidden=false;}; $('lset-close').onclick=()=>{$('s-lset').hidden=true;};
   $('ar-rand').onclick=()=>setCounts(randomCounts(app.lobby.o)); $('ar-clear').onclick=()=>setCounts({});
   G.bind(); G.bindMenu(); G.onExit=()=>leaveAll();
+  window.addEventListener('beforeunload',e=>{ if(app.role==='host'&&app.lobby&&!app.inGame&&app.host){ e.preventDefault(); e.returnValue=''; } });
+  resumeSession();
+}
+function resumeSession(){
+  const s=loadSess(); if(!s||!s.role||!s.code||!PB.serverURL||!PB.serverURL())return; const hash=(location.hash||'').replace('#','').toUpperCase(); if(/^[A-Z0-9]{5}$/.test(hash)&&hash!==s.code){ clearSess(); return; }
+  if(s.role==='host')createLobby(s); else if(s.role==='guest')joinLobby(s);
 }
 function getName(){const n=($('m-name').value||'').trim().slice(0,16)||T('Полководец')+(100+rnd(900));localStorage.setItem('pb-name',n);return n;}
 function newLobby(role){
   const o=defaultOpts(); app.lobby={o,slots:slotsFor(o.mode),seed:1+rnd(1e9)}; app.role=role; app.me=0;
   app.lobby.slots[0].conn='host'; app.lobby.slots[0].name=app.name;
   if(role==='solo'){o.fillBots=true;}
-  app.counts=randomCounts(o); syncMyArmy();
+  app.counts={}; syncMyArmy();
 }
-async function createLobby(){
-  app.name=getName(); say(T('Создаём лобби…'),true); $('m-create').disabled=true;
-  try{ newLobby('host'); const h=new PB.Host(); app.host=h;
-    h.onMsg=hostMsg; h.onLeave=hostLeave; h.onClose=()=>{ if(app.host===h&&app.role==='host'){ if(app.inGame)G.toast(T('Связь с сервером потеряна')); else { leaveAll(); say(T('Связь с сервером потеряна.')); } } }; await h.start();
-    app.lobby.code=h.code; openLobbyScreen(); say('');
-  }catch(e){ say(e.message||String(e)); app.role=null; app.host&&app.host.close(); app.host=null; }
+async function createLobby(resume){
+  app.name=resume?resume.name:getName(); say(resume?T('Возвращаемся в своё лобби…'):T('Создаём лобби…'),true); $('m-create').disabled=true;
+  try{ newLobby('host'); if(resume&&resume.o){ app.lobby.o=Object.assign(defaultOpts(),resume.o); app.lobby.slots=slotsFor(app.lobby.o.mode); app.lobby.slots[0].conn='host'; app.lobby.slots[0].name=app.name; app.counts=resume.counts||{}; syncMyArmy(); }
+    const h=new PB.Host(); app.host=h; h.token=resume?resume.token:rndToken();
+    h.onMsg=hostMsg; h.onLeave=hostLeave; h.onClose=()=>{ if(app.host===h&&app.role==='host'){ if(app.inGame)G.toast(T('Связь с сервером потеряна')); else { leaveAll(); say(T('Связь с сервером потеряна.')); } } }; await h.start(resume?resume.code:undefined);
+    app.lobby.code=h.code; saveSess({role:'host',code:h.code,token:h.token,name:app.name,o:app.lobby.o,counts:app.counts}); openLobbyScreen(); say('');
+  }catch(e){ if(resume){ clearSess(); say(e.gone?T('Ваше лобби уже закрыто.'):(e.message||String(e))); } else say(e.message||String(e)); app.role=null; app.host&&app.host.close(); app.host=null; }
   $('m-create').disabled=false;
 }
 function startSoloLobby(){ app.name=getName(); newLobby('solo'); openLobbyScreen(); }
-async function joinLobby(){
-  app.name=getName(); const code=($('m-code').value||'').trim().toUpperCase(); if(code.length<4){say(T('Введите код лобби'));return;}
+async function joinLobby(resume){
+  app.name=resume?resume.name:getName(); const code=resume?resume.code:($('m-code').value||'').trim().toUpperCase(); if(code.length<4){say(T('Введите код лобби'));return;}
   say(T('Подключаемся…'),true); $('m-join').disabled=true;
   try{ const g=new PB.Guest(); app.guest=g; app.role='guest'; app.lobby=null;
     g.onMsg=guestMsg; g.onClose=()=>{ if(app.inGame){G.toast(T('Связь с хостом потеряна'));} else if(app.role==='guest'){ leaveAll(); say(T('Хост закрыл лобби.')); } };
     await g.connect(code,{t:'hello',name:app.name,hash:BAL_HASH,ver:app.bal.version,dev:!!BUILD.dev}); say(T('Ждём ответа хоста…'),true);
-    app.joinCode=code;
-  }catch(e){ say(e.message||String(e)); app.guest&&app.guest.close(); app.guest=null; app.role=null; }
+    app.joinCode=code; saveSess({role:'guest',code,name:app.name});
+  }catch(e){ if(resume)clearSess(); say(e.message||String(e)); app.guest&&app.guest.close(); app.guest=null; app.role=null; }
   $('m-join').disabled=false;
 }
 function leaveAll(){
-  G.stop(); try{app.host&&app.host.close();}catch(e){} try{app.guest&&app.guest.close();}catch(e){}
+  clearSess(); G.stop(); try{app.host&&app.host.close();}catch(e){} try{app.guest&&app.guest.close();}catch(e){}
   app={role:null,name:app.name,host:null,guest:null,lobby:null,me:-1,sim:null,bal:BAL,inGame:false,counts:{}}; history.replaceState(null,'',location.pathname); show('s-menu');
 }
 function copyLink(){ const url=location.origin&&location.protocol!=='file:'?location.origin+location.pathname+'#'+app.lobby.code:app.lobby.code;
@@ -2818,7 +3221,7 @@ function lobbyPublic(forIdx){
   const lb=app.lobby; return {t:'lobby',o:lb.o,you:forIdx,code:lb.code,slots:lb.slots.map(s=>({team:s.team,name:s.name,human:!!s.conn,ready:s.ready,valid:s.valid,me:false}))};
 }
 function pushInfo(inGame){ const h=app.host, lb=app.lobby; if(!h||!h.setInfo||!lb)return; h.setInfo({open:!!lb.o.open,inGame:!!inGame,name:app.name,mode:lb.o.mode,n:lb.slots.filter(s=>s.conn).length,max:lb.slots.length,size:lb.o.mapSize,ver:app.bal.version}); }
-function pushLobby(){ pushInfo(app.inGame);
+function pushLobby(){ pushInfo(app.inGame); if(app.role==='host'&&!app.inGame)saveSess({o:app.lobby.o,counts:app.counts});
   syncMyArmy(); if(app.host){ app.lobby.slots.forEach((s,i)=>{ if(s.conn&&s.conn!=='host')app.host.send(s.conn,lobbyPublic(i)); }); }
   renderLobby();
 }
@@ -2832,8 +3235,8 @@ function changeOpt(fn){
   if(lb.slots.length!==MODES[o.mode].k*2){ // смена режима: пересобрать слоты, сохранив людей
     const humans=lb.slots.filter(s=>s.conn); lb.slots=slotsFor(o.mode); let t=[0,0]; const k=MODES[o.mode].k;
     for(const h of humans){ const idx=lb.slots.findIndex(s=>!s.conn&&s.team===(h.conn==='host'?0:(t[0]<=t[1]?0:1))); const j=idx>=0?idx:lb.slots.findIndex(s=>!s.conn); if(j<0){ if(h.conn&&h.conn!=='host')app.host.send(h.conn,{t:'reject',why:T('Лобби стало меньше')}); continue;} { const tj=lb.slots[j].team; Object.assign(lb.slots[j],h); lb.slots[j].team=tj; } t[lb.slots[j].team]++; }
-    app.counts=randomCounts(o); lb.slots.forEach(s=>{s.ready=false;});
-  } else if(!armyCheck(app.counts,o).ok){ app.counts=randomCounts(o); }
+    app.counts={}; lb.slots.forEach(s=>{s.ready=false;});
+  }
   lb.slots.forEach(s=>{ if(s.counts)s.valid=armyCheck(s.counts,o).ok; s.ready=s.conn==='host'?false:s.ready&&s.valid; });
   if(app.role==='host')pushLobby(); else { syncMyArmy(); renderLobby(); }
 }
@@ -2841,9 +3244,10 @@ function changeOpt(fn){
 /* ---------------- лобби: гость ---------------- */
 function guestMsg(m){
   if(!m)return;
+  if(m.t==='srv'){ if(m.e==='hostwait')G.toast(T('Хост переподключается…')); else if(m.e==='rehello'&&app.guest){ app.armySent=false; app.guest.send({t:'hello',name:app.name,hash:BAL_HASH,ver:app.bal.version,dev:!!BUILD.dev}); } return; }
   if(m.t==='reject'){ say(m.why||T('Отказано')); leaveAll(); say(m.why); return; }
   if(m.t==='welcome'){ app.me=m.you; return; }
-  if(m.t==='lobby'){ app.me=m.you; app.lobby={o:m.o,slots:m.slots.map(s=>Object.assign({conn:s.human?1:null},s)),code:app.joinCode}; if(!app.counts||!Object.keys(app.counts).length||!armyCheck(app.counts,m.o).ok){app.counts=randomCounts(m.o);app.guest.send({t:'army',c:app.counts});}
+  if(m.t==='lobby'){ const pm=app.lobby&&app.lobby.o&&app.lobby.o.mode; if(pm&&pm!==m.o.mode){ app.counts={}; app.guest.send({t:'army',c:{}}); } app.me=m.you; app.lobby={o:m.o,slots:m.slots.map(s=>Object.assign({conn:s.human?1:null},s)),code:app.joinCode}; if(!app.armySent){app.armySent=true;app.guest.send({t:'army',c:app.counts||{}});}
     if(!app.inGame)openLobbyScreen(); else renderLobby(); return; }
   if(m.t==='init'){ startGuestGame(m); return; }
   if(m.t==='s'&&app.sim&&app.inGame){ const ev=PB.applySnap(app.sim,m,performance.now()); G.pushEvents(ev); }
@@ -2976,7 +3380,7 @@ function hostStart(){
   const players=[],armies=[];
   lb.slots.forEach((s,i)=>{ const human=!!s.conn; players.push({name:human?s.name:T('Бот ')+(i+1),team:s.team,bot:!human}); armies.push(toList(human?(i===app.me?app.counts:s.counts):botCounts(o,i))); });
   const gopts=gOpts(o); const seed=lb.seed=1+rnd(1e9);
-  const sim=PB.createSim(app.bal,gopts,players,armies,seed); PB.aiInit(sim); app.sim=sim; app.inGame=true; pushInfo(true);
+  const sim=PB.createSim(app.bal,gopts,players,armies,seed); PB.aiInit(sim); app.sim=sim; app.inGame=true; clearSess(); pushInfo(true);
   if(app.host){ lb.slots.forEach((s,i)=>{ if(s.conn&&s.conn!=='host')app.host.send(s.conn,{t:'init',opts:gopts,players,armies,seed,you:i,bal:BUILD.dev?app.bal:null}); }); }
   const me=lb.slots.findIndex(s=>s.conn==='host');
   app.me=me; show('s-game');
@@ -2988,7 +3392,7 @@ function broadcast(){
   sim.evbuf=[];
 }
 function startGuestGame(m){
-  const bal=(m.bal&&BUILD.dev)?(PB.I18n?PB.I18n.localize(m.bal):m.bal):app.bal; const sim=PB.createSim(bal,m.opts,m.players,m.armies,m.seed); sim.snapAt=performance.now(); app.sim=sim; app.me=m.you; app.inGame=true;
+  const bal=(m.bal&&BUILD.dev)?(PB.I18n?PB.I18n.localize(m.bal):m.bal):app.bal; const sim=PB.createSim(bal,m.opts,m.players,m.armies,m.seed); sim.snapAt=performance.now(); app.sim=sim; app.me=m.you; app.inGame=true; clearSess();
   show('s-game');
   G.start({sim,me:m.you,role:'guest',io:{broadcast(){},sendOrder:(sq,o)=>app.guest.send({t:'o',sq,o}),sendPlace:(sq,cx,cy,face,w)=>app.guest.send({t:'p',sq,cx,cy,face,w}),sendReady:()=>app.guest.send({t:'r'}),sendSurrender:()=>app.guest.send({t:'sur'})}});
 }
